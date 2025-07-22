@@ -285,7 +285,3 @@ For support, please open an issue on GitHub or contact [your-email@example.com](
 - Regional food availability data sources
 - Open source Python community
 - Healthcare professionals who provided guidance
-
----
-
-**Made with ❤️ for improving nutrition and health outcomes in Kenya**
