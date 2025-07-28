@@ -31,28 +31,40 @@ The system uses a multi-agent architecture with three specialized agents:
 
 ### Central Region
 
-- Counties: Nairobi, Kiambu, Murang'a, Nyeri
-- Foods: Maize, wheat, kale, spinach, beans, chicken, milk
+- Counties: Nairobi, Kiambu, Murang'a, Nyeri, Kirinyaga, Nyandarua, Meru, Tharaka-Nithi
+- Foods: Maize, wheat, barley, kale, spinach, cabbage, carrots, potatoes, beans, chicken, milk, avocados, tree tomatoes, macadamia
 
 ### Coastal Region
 
-- Counties: Mombasa, Kilifi, Kwale, Lamu
-- Foods: Rice, cassava, coconut, fish, seafood, mangoes
+- Counties: Mombasa, Kilifi, Kwale, Lamu, Tana River, Taita-Taveta
+- Foods: Rice, cassava, coconut, fish, seafood, prawns, mangoes, jackfruit, baobab fruit, cashew fruit, tamarind
 
 ### Western Region
 
-- Counties: Kisumu, Kakamega, Bungoma, Vihiga
-- Foods: Millet, sorghum, fish, pineapples, sugarcane
+- Counties: Kisumu, Kakamega, Bungoma, Vihiga, Siaya, Busia, Trans-Nzoia
+- Foods: Millet, sorghum, finger millet, fish, tilapia, pineapples, sugarcane, groundnuts, soya beans
 
 ### Northern Region
 
-- Counties: Garissa, Mandera, Wajir, Turkana
-- Foods: Sorghum, dates, goat meat, camel meat
+- Counties: Garissa, Mandera, Wajir, Turkana, West Pokot, Samburu
+- Foods: Sorghum, pearl millet, dates, goat meat, camel meat, camel milk, doum palm, watermelon
 
 ### Eastern Region
 
-- Counties: Machakos, Kitui, Makueni, Embu
-- Foods: Maize, millet, sweet potatoes, watermelon
+- Counties: Machakos, Kitui, Makueni, Embu, Isiolo, Marsabit, Moyale
+- Foods: Maize, millet, sweet potatoes, cassava, watermelon, baobab fruit, cowpeas, green grams
+
+### Nyanza Region
+
+- Counties: Kisii, Nyamira, Homa Bay, Migori, Kericho, Bomet
+- Foods: Maize, finger millet, rice, fish, tilapia, spider plant, nightshade, sugarcane, bananas
+
+### Rift Valley Region
+
+- Counties: Nakuru, Eldoret, Narok, Kajiado, Laikipia, Nandi, Uasin Gishu, Elgeyo-Marakwet, Baringo
+- Foods: Wheat, barley, oats, beef, lamb, dairy products, irish potatoes, apples, strawberries
+
+_Total Coverage: 47+ counties across 7 major regions with over 70 different food varieties_
 
 ## 🚀 Installation
 

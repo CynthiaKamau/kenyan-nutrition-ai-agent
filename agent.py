@@ -220,22 +220,55 @@ class KenyanNutritionAgent:
             # Location
             print("\nAvailable regions in Kenya:")
             regions = [
-                "Nairobi", "Kiambu", "Murang'a", "Nyeri",  # Central
-                "Mombasa", "Kilifi", "Kwale", "Lamu",      # Coastal
-                "Kisumu", "Kakamega", "Bungoma", "Vihiga", # Western
-                "Garissa", "Mandera", "Wajir", "Turkana", # Northern
-                "Machakos", "Kitui", "Makueni", "Embu"    # Eastern
+                # Central Kenya
+                "Nairobi", "Kiambu", "Murang'a", "Nyeri", "Kirinyaga", "Nyandarua", "Meru", "Tharaka-Nithi",
+                
+                # Coastal Region
+                "Mombasa", "Kilifi", "Kwale", "Lamu", "Tana River", "Taita-Taveta",
+                
+                # Western Kenya
+                "Kisumu", "Kakamega", "Bungoma", "Vihiga", "Siaya", "Busia", "Trans-Nzoia",
+                
+                # Eastern Kenya
+                "Machakos", "Kitui", "Makueni", "Embu", "Isiolo", "Marsabit", "Moyale",
+                
+                # Northern Kenya
+                "Garissa", "Mandera", "Wajir", "Turkana", "West Pokot", "Samburu",
+                
+                # Nyanza Region
+                "Kisii", "Nyamira", "Homa Bay", "Migori", "Kericho", "Bomet",
+                
+                # Rift Valley
+                "Nakuru", "Eldoret", "Narok", "Kajiado", "Laikipia", "Nandi", "Uasin Gishu", "Elgeyo-Marakwet", "Baringo"
             ]
             
-            print("Common locations:")
-            for i, region in enumerate(regions[:8], 1):
-                print(f"  {i}. {region}")
+            # Show representative locations from different regions
+            representative_locations = [
+                "Nairobi",      # Central
+                "Mombasa",      # Coastal
+                "Kisumu",       # Western
+                "Machakos",     # Eastern
+                "Garissa",      # Northern
+                "Kisii",        # Nyanza
+                "Nakuru",       # Rift Valley
+                "Eldoret"       # Rift Valley (major town)
+            ]
+            
+            print("Common locations (representing different regions):")
+            for i, location in enumerate(representative_locations, 1):
+                # Add region indicator
+                region_indicators = {
+                    "Nairobi": "(Central)", "Mombasa": "(Coastal)", "Kisumu": "(Western)",
+                    "Machakos": "(Eastern)", "Garissa": "(Northern)", "Kisii": "(Nyanza)",
+                    "Nakuru": "(Rift Valley)", "Eldoret": "(Rift Valley)"
+                }
+                print(f"  {i}. {location} {region_indicators.get(location, '')}")
             print("  9. Other (enter manually)")
             
             location_choice = input("Select location (1-9) or enter location name: ")
             
             if location_choice.isdigit() and 1 <= int(location_choice) <= 8:
-                location = regions[int(location_choice) - 1].lower()
+                location = representative_locations[int(location_choice) - 1].lower()
             elif location_choice == "9":
                 location = input("Enter your location: ").strip().lower()
             else:
