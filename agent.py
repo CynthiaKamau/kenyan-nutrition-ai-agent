@@ -1,25 +1,28 @@
 from typing import Dict, Any
 import logging
 import json
+import uuid
 from sub_agents.patient_profiles.agent import PatientProfileAgent
 from sub_agents.regions_for_food.agent import RegionalFoodAgent
 from sub_agents.food_recommendations.agent import FoodRecommendationAgent
+from utils.feedback import FeedbackCollector
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 class KenyanNutritionAgent:
-    """Main agent that coordinates all sub-agents for comprehensive nutrition recommendations"""
+    """Main agent that coordinates all ADK sub-agents for comprehensive nutrition recommendations"""
     
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         
-        # Initialize sub-agents
+        # Initialize ADK sub-agents
         self.patient_agent = PatientProfileAgent()
         self.regional_agent = RegionalFoodAgent()
         self.recommendation_agent = FoodRecommendationAgent()
+        self.feedback_collector = FeedbackCollector()
         
-        self.logger.info("Kenyan Nutrition Agent initialized successfully")
+        self.logger.info("Kenyan Nutrition Agent initialized with Google ADK")
     
     def get_nutrition_recommendations(self, 
                                     age: int,
@@ -28,9 +31,10 @@ class KenyanNutritionAgent:
                                     blood_sugar: float,
                                     blood_pressure: Dict[str, int],
                                     diabetes_status: str,
-                                    location: str) -> Dict[str, Any]:
+                                    location: str,
+                                    collect_feedback: bool = False) -> Dict[str, Any]:
         """
-        Complete workflow to get personalized nutrition recommendations
+        Complete workflow using ADK agents for personalized nutrition recommendations
         
         Args:
             age: Patient age in years
@@ -40,15 +44,19 @@ class KenyanNutritionAgent:
             blood_pressure: Dict with 'systolic' and 'diastolic' values
             diabetes_status: 'none', 'type1', 'type2', or 'prediabetes'
             location: Patient's geographical location in Kenya
+            collect_feedback: Whether to collect feedback for model improvement (default: False)
         
         Returns:
             Complete nutrition recommendation report
         """
         
-        self.logger.info("Starting nutrition recommendation workflow")
+        # Generate unique session ID for feedback tracking
+        session_id = str(uuid.uuid4()) if collect_feedback else None
         
-        # Step 1: Create patient profile using PatientProfileAgent
-        self.logger.info("Step 1: Creating patient profile...")
+        self.logger.info(f"Starting ADK nutrition recommendation workflow - Session: {session_id}")
+        
+        # Step 1: Create patient profile using ADK PatientProfileAgent
+        self.logger.info("Step 1: Creating patient profile with ADK...")
         patient_profile = self.patient_agent.create_patient_profile(
             age=age,
             weight=weight,
@@ -56,22 +64,29 @@ class KenyanNutritionAgent:
             blood_sugar=blood_sugar,
             blood_pressure=blood_pressure,
             diabetes_status=diabetes_status,
-            location=location
+            location=location,
+            session_id=session_id
         )
         self.logger.info(f"Patient profile created - Health category: {patient_profile['health_category']}")
         
-        # Step 2: Get regional foods using RegionalFoodAgent
-        self.logger.info("Step 2: Identifying regional foods...")
-        regional_foods = self.regional_agent.get_regional_foods(location)
+        # Step 2: Get regional foods using ADK RegionalFoodAgent
+        self.logger.info("Step 2: Identifying regional foods with ADK...")
+        regional_foods = self.regional_agent.get_regional_foods(
+            location, 
+            session_id=session_id
+        )
         available_foods_count = sum(len(foods) for foods in regional_foods.values())
         self.logger.info(f"Found {available_foods_count} foods available in {location} region")
         
-        # Step 3: Generate recommendations using FoodRecommendationAgent
-        self.logger.info("Step 3: Generating personalized food recommendations...")
-        recommendations = self.recommendation_agent.generate_recommendations(patient_profile)
+        # Step 3: Generate recommendations using ADK FoodRecommendationAgent
+        self.logger.info("Step 3: Generating personalized food recommendations with ADK...")
+        recommendations = self.recommendation_agent.generate_recommendations(
+            patient_profile,
+            session_id=session_id
+        )
         self.logger.info("Food recommendations generated successfully")
         
-        # Compile complete report
+        # Compile complete report with session tracking
         complete_report = {
             "patient_profile": patient_profile,
             "regional_foods": regional_foods,
@@ -79,8 +94,23 @@ class KenyanNutritionAgent:
             "summary": self._generate_summary(patient_profile, recommendations)
         }
         
-        self.logger.info("Nutrition recommendation workflow completed")
+        # Add session tracking and metrics if feedback is enabled
+        if collect_feedback:
+            complete_report["session_id"] = session_id
+            complete_report["model_metrics"] = self._get_model_performance_metrics()
+        
+        self.logger.info("ADK nutrition recommendation workflow completed")
         return complete_report
+    
+    def _get_model_performance_metrics(self) -> Dict[str, Any]:
+        """Get performance metrics for all agents"""
+        metrics = {}
+        
+        for agent_name in ["patient-profile-agent", "regional-food-agent", "food-recommendation-agent"]:
+            agent_metrics = self.feedback_collector.calculate_agent_metrics(agent_name)
+            metrics[agent_name] = agent_metrics
+        
+        return metrics
     
     def _generate_summary(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, str]:
         """Generate a summary of key findings and recommendations"""
@@ -123,10 +153,14 @@ class KenyanNutritionAgent:
         return ", ".join(focus_areas) if focus_areas else "general balanced nutrition"
     
     def print_recommendations(self, report: Dict[str, Any]):
-        """Print a formatted version of the recommendations"""
+        """Print a formatted version of the recommendations with model performance"""
         print("\n" + "="*60)
-        print("KENYAN NUTRITION AI - PERSONALIZED RECOMMENDATIONS")
+        print("KENYAN NUTRITION AI - ADK POWERED RECOMMENDATIONS")
         print("="*60)
+        
+        # Show session info
+        if "session_id" in report:
+            print(f"Session ID: {report['session_id']}")
         
         # Patient Summary
         profile = report['patient_profile']
@@ -177,6 +211,15 @@ class KenyanNutritionAgent:
         print(f"\n⏰ MEAL TIMING ADVICE:")
         for key, advice in timing.items():
             print(f"   {key.title()}: {advice}")
+        
+        # Show model performance metrics if available
+        if "model_metrics" in report:
+            print(f"\n📊 MODEL PERFORMANCE:")
+            for agent_name, metrics in report["model_metrics"].items():
+                if metrics.get("total_sessions", 0) > 0:
+                    print(f"   {agent_name.replace('-', ' ').title()}:")
+                    print(f"     Average Rating: {metrics['average_rating']:.1f}/5.0")
+                    print(f"     Total Sessions: {metrics['total_sessions']}")
         
         print("\n" + "="*60)
     
@@ -328,8 +371,8 @@ class KenyanNutritionAgent:
         print("This may take a moment...")
         
         try:
-            # Generate recommendations
-            recommendations = self.get_nutrition_recommendations(**patient_data)
+            # Generate recommendations without feedback collection
+            recommendations = self.get_nutrition_recommendations(**patient_data, collect_feedback=False)
             
             # Display results
             self.print_recommendations(recommendations)
@@ -351,48 +394,126 @@ class KenyanNutritionAgent:
             logging.error(f"Error generating recommendations: {str(e)}")
             print(f"❌ Error: {str(e)}")
 
+    def run_interactive_session_with_feedback(self):
+        """Run an interactive session with comprehensive feedback collection"""
+        print("🏥 KENYAN NUTRITION AI AGENT (ADK Powered)")
+        print("Welcome to your AI-powered nutrition assistant!")
+        
+        # Get user input
+        patient_data = self.get_user_input()
+        
+        if patient_data is None:
+            print("Session terminated.")
+            return
+        
+        print("\n🔄 Processing with Google ADK agents...")
+        print("This may take a moment...")
+        
+        try:
+            # Generate recommendations with feedback
+            recommendations = self.get_nutrition_recommendations(**patient_data, collect_feedback=True)
+            
+            # Display results
+            self.print_recommendations(recommendations)
+            
+            # Overall session feedback
+            print("\n📊 OVERALL SESSION FEEDBACK")
+            try:
+                overall_rating = int(input("Rate your overall experience (1-5): "))
+                overall_comments = input("Any additional feedback: ").strip()
+                
+                session_feedback = {
+                    "session_id": recommendations.get("session_id"),
+                    "overall_rating": overall_rating,
+                    "overall_comments": overall_comments if overall_comments else None,
+                    "patient_data": patient_data
+                }
+                
+                # Save session feedback
+                import os
+                os.makedirs("session_feedback", exist_ok=True)
+                session_id = recommendations.get("session_id", "unknown")
+                with open(f"session_feedback/session_{session_id}.json", 'w') as f:
+                    json.dump(session_feedback, f, indent=2)
+                
+            except (ValueError, KeyboardInterrupt):
+                print("Feedback collection skipped")
+            
+            # Ask if user wants to save report
+            save_report = input("\n💾 Would you like to save the full report to a file? (y/n): ").lower()
+            if save_report == 'y':
+                filename = f"adk_nutrition_report_{patient_data['location']}_{patient_data['age']}y.json"
+                filepath = f"/Users/cynthiakamau/PycharmProjects/nutrition-ai-agent/{filename}"
+                
+                with open(filepath, 'w') as f:
+                    json.dump(recommendations, f, indent=2)
+                print(f"✅ Report saved to: {filename}")
+            
+            print("\n🎉 Thank you for using Kenyan Nutrition AI!")
+            print("Your feedback helps improve our AI recommendations!")
+            
+        except Exception as e:
+            logging.error(f"Error generating recommendations: {str(e)}")
+            print(f"❌ Error: {str(e)}")
+
 def main():
-    """Main function with options for demo or interactive mode"""
-    # Initialize the main agent
+    """Main function with ADK agent options"""
+    # Initialize the ADK-powered main agent
     nutrition_agent = KenyanNutritionAgent()
     
-    print("🏥 KENYAN NUTRITION AI AGENT")
+    print("🏥 KENYAN NUTRITION AI AGENT (Google ADK Powered)")
     print("Choose your preferred mode:")
-    print("  1. Interactive mode (Enter your own details)")
+    print("  1. Interactive mode with feedback (Enter your own details)")
     print("  2. Demo mode (Use sample patient data)")
+    print("  3. View model performance metrics")
     
     try:
-        mode = input("Select mode (1 or 2): ").strip()
+        mode = input("Select mode (1, 2, or 3): ").strip()
         
         if mode == "1":
-            # Interactive mode
-            nutrition_agent.run_interactive_session()
+            # Interactive mode with feedback
+            nutrition_agent.run_interactive_session_with_feedback()
             
         elif mode == "2":
             # Demo mode with sample data
-            print("\n🔄 Running demo with sample patient data...")
+            print("\n🔄 Running ADK demo with sample patient data...")
             
-            # Sample patient data
             patient_data = {
                 "age": 45,
-                "weight": 78.0,  # kg
-                "height": 1.68,  # meters
-                "blood_sugar": 135,  # mg/dL
+                "weight": 78.0,
+                "height": 1.68,
+                "blood_sugar": 135,
                 "blood_pressure": {"systolic": 140, "diastolic": 85},
                 "diabetes_status": "prediabetes",
                 "location": "nairobi"
             }
             
             # Get comprehensive recommendations
-            recommendations = nutrition_agent.get_nutrition_recommendations(**patient_data)
+            recommendations = nutrition_agent.get_nutrition_recommendations(**patient_data, collect_feedback=False)
             
             # Print formatted recommendations
             nutrition_agent.print_recommendations(recommendations)
             
             # Save demo report
-            with open('/Users/cynthiakamau/PycharmProjects/nutrition-ai-agent/nutrition_report_demo.json', 'w') as f:
+            with open('/Users/cynthiakamau/PycharmProjects/nutrition-ai-agent/adk_nutrition_report_demo.json', 'w') as f:
                 json.dump(recommendations, f, indent=2)
-            print(f"\n💾 Demo report saved to: nutrition_report_demo.json")
+            print(f"\n💾 ADK demo report saved to: adk_nutrition_report_demo.json")
+            
+        elif mode == "3":
+            # View performance metrics
+            print("\n📊 MODEL PERFORMANCE METRICS:")
+            metrics = nutrition_agent._get_model_performance_metrics()
+            
+            if not any(m.get("total_sessions", 0) > 0 for m in metrics.values()):
+                print("No feedback data available yet. Run some sessions first!")
+            else:
+                for agent_name, agent_metrics in metrics.items():
+                    if agent_metrics.get("total_sessions", 0) > 0:
+                        print(f"\n{agent_name.replace('-', ' ').title()}:")
+                        print(f"  Average Rating: {agent_metrics['average_rating']:.1f}/5.0")
+                        print(f"  Total Sessions: {agent_metrics['total_sessions']}")
+                        if "rating_distribution" in agent_metrics:
+                            print(f"  Rating Distribution: {agent_metrics['rating_distribution']}")
             
         else:
             print("❌ Invalid selection. Please run the program again.")
