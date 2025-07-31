@@ -13,6 +13,11 @@ class PatientProfileAgent:
         self.feedback_collector = FeedbackCollector()
         
         # Initialize Vertex AI
+        try:
+            config.initialize_vertex_ai()
+        except Exception:
+            self.logger.error("Failed to initialize Vertex AI. Using fallback logic.")
+        
         aiplatform.init(project=config.project_id, location=config.location)
         self.model = GenerativeModel(config.model_name)
         
