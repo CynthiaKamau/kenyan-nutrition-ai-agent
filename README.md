@@ -1,23 +1,43 @@
 # Kenyan Nutrition AI Agent
 
-An intelligent nutrition recommendation system that provides personalized dietary advice based on patient health profiles and regional food availability in Kenya. The system features a multi-agent architecture for comprehensive patient profiling, regional food mapping, and tailored meal planning for diabetes management and general wellness.
+An intelligent, agentic nutrition recommendation system powered by **LangGraph** and **LangChain** that provides personalized dietary advice based on patient health profiles and regional food availability in Kenya. Features a multi-agent architecture with **evaluate-improve loops** for high-quality recommendations, comprehensive patient profiling, regional food mapping, and tailored meal planning for diabetes management and general wellness.
 
 ## 🌟 Features
 
 - **Patient Health Profiling**: Comprehensive analysis of age, weight, BMI, blood sugar levels, blood pressure, and diabetes status
-- **Regional Food Mapping**: Database of foods available across different Kenyan regions (Central, Coastal, Western, Northern, Eastern)
+- **Dynamic Regional Food Mapping**: Real-time food availability lookup across 47+ Kenyan counties from Excel dataset
 - **Personalized Meal Planning**: Custom meal plans based on health conditions and local food availability
 - **Diabetes Management**: Specialized recommendations for Type 1, Type 2, and pre-diabetes patients
-- **Interactive Interface**: User-friendly command-line interface for data input
-- **Comprehensive Reports**: Detailed nutrition reports with meal timing, portion guidelines, and dietary restrictions
+- **Evaluation-Improve Loop**: LangGraph-based feedback mechanism with heuristic or LLM-based quality scoring
+- **Interactive Interface**: User-friendly command-line interface for data input and demo mode
+- **Comprehensive Reports**: Detailed nutrition reports with meal timing, portion guidelines, and dietary restrictions supported by evaluation traces
 
 ## 🏗️ Architecture
 
-The system uses a multi-agent architecture with three specialized agents:
+The system uses a **multi-agent architecture** with LangGraph-based workflows for recommendation generation and quality assurance:
+
+### Core Agents
 
 1. **Patient Profiles Agent** (`sub_agents/patient_profiles/`): Analyzes patient health data and categorizes risk levels
-2. **Regional Food Agent** (`sub_agents/regions_for_food/`): Maps regional food availability across Kenya
+2. **Regional Food Agent** (`sub_agents/regions_for_food/`): Maps regional food availability by looking up live data from Excel
 3. **Food Recommendations Agent** (`sub_agents/food_recommendations/`): Generates personalized meal plans and dietary advice
+
+### Recommendation Paths
+
+- **`get_nutrition_recommendations()`**: Simple 3-step deterministic pipeline (fast)
+  - Profile → Regional Foods → Recommendations
+  
+- **`get_nutrition_recommendations_graph()`**: LangGraph-based evaluation-improve loop (quality-focused)
+  - Profile → Regional Foods → Recommendations → **Evaluate** → **Improve** → Re-evaluate
+  - Iterates until target score achieved or max iterations reached
+  - Returns evaluation score, improvement trace, and iteration count
+
+### Tech Stack
+
+- **LangGraph**: State machine-based workflow orchestration
+- **LangChain**: LLM integration, prompt templating, tool chains
+- **OpenAI** (optional): GPT-4o-mini for LLM-based evaluation
+- **Pandas/OpenpyXL**: Excel data ingestion and processing
 
 ## 📋 Health Parameters Supported
 
@@ -78,7 +98,7 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/kenyan-nutrition-ai-agent.git
+   git clone https://github.com/CynthiaKamau/kenyan-nutrition-ai-agent
    cd kenyan-nutrition-ai-agent
    ```
 
@@ -92,10 +112,14 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
 3. **Install dependencies**
 
    ```bash
+   pip install langchain langchain-openai langgraph openpyxl pandas
+   ```
+   
+   Or install all at once:
+   
+   ```bash
    pip install -r requirements.txt
    ```
-
-   _Note: If requirements.txt doesn't exist, the project currently uses only Python standard libraries._
 
 ## 💻 Usage
 
@@ -124,27 +148,34 @@ python agent.py
 # Choose option 2 for demo mode
 ```
 
-### Example Usage
+### Example: Graph-Based Evaluation
 
 ```python
-from kenyan_nutrition_agent.agent import KenyanNutritionAgent
+from agent import KenyanNutritionAgent
 
-# Initialize the agent
 agent = KenyanNutritionAgent()
 
-# Get recommendations for a patient
-recommendations = agent.get_nutrition_recommendations(
+# High-quality recommendations with evaluation feedback
+result = agent.get_nutrition_recommendations_graph(
     age=45,
     weight=78.0,
     height=1.68,
     blood_sugar=135,
     blood_pressure={"systolic": 140, "diastolic": 85},
     diabetes_status="prediabetes",
-    location="nairobi"
+    location="nairobi",
+    use_llm_evaluator=False,  # Use heuristic evaluator
+    max_iterations=3,
+    target_score=0.8  # Quality threshold
 )
 
-# Print formatted recommendations
-agent.print_recommendations(recommendations)
+print(f"Evaluation Score: {result['evaluation']['score']}")  # e.g., 0.85
+print(f"Iterations: {result['graph_metadata']['iterations']}")  # Number of improvement cycles
+print(f"Evaluator: {result['graph_metadata']['evaluator']}")  # 'heuristic' or 'llm'
+print(f"Trace: {result['graph_metadata']['trace']}")  # Full iteration history
+
+# Access improved recommendations
+print(f"Recommendations: {result['recommendations']}")
 ```
 
 ## 📊 Sample Output
@@ -183,30 +214,50 @@ KENYAN NUTRITION AI - PERSONALIZED RECOMMENDATIONS
 
 ```
 kenyan-nutrition-agent/
-├── agent.py                          # Main coordination agent
+├── agent.py                               # Main orchestration agent (LangGraph workflows)
+├── data_loader.py                         # Excel data ingestion & region mapping
+├── kenya_food_dataset_with_aez_subcounty.xlsx  # Live food/nutrition database
 ├── sub_agents/
 │   ├── patient_profiles/
 │   │   ├── __init__.py
-│   │   └── agent.py                  # Patient profiling logic
+│   │   └── agent.py                      # Patient profiling logic
 │   ├── regions_for_food/
 │   │   ├── __init__.py
-│   │   └── agent.py                  # Regional food mapping
+│   │   └── agent.py                      # Regional food availability agent
 │   └── food_recommendations/
 │       ├── __init__.py
-│       └── agent.py                  # Recommendation engine
+│       └── agent.py                      # Recommendation engine
 ├── README.md
 ├── .gitignore
-└── requirements.txt                  # (if needed)
+└── requirements.txt
 ```
 
 ## 🔧 Configuration
 
-The system includes built-in configurations for:
+The system includes:
 
-- **Nutritional Database**: Caloric and nutritional information for common Kenyan foods
-- **Regional Mapping**: Food availability across different Kenyan regions
+- **Live Nutritional Database**: Excel-based food data with calories, macros, fiber, and GI values
+- **Regional Mapping**: County-to-region lookup with fallback to central region
 - **Health Thresholds**: BMI categories, blood pressure ranges, diabetes classifications
-- **Portion Guidelines**: Age and health-adjusted serving sizes
+- **Evaluation Rules**: Heuristic scoring for diet quality (portion control, food balance, restrictions compliance)
+- **LLM Evaluation** (optional): GPT-4o-mini scoring via LangChain (requires `OPENAI_API_KEY`)
+
+### Enable LLM Evaluation
+
+Set environment variable:
+
+```bash
+export OPENAI_API_KEY="your-api-key"
+```
+
+Then use in recommendations:
+
+```python
+agent.get_nutrition_recommendations_graph(
+    ...,
+    use_llm_evaluator=True  # Switch to LLM-powered evaluation
+)
+```
 
 ## 📈 Health Risk Assessment
 
@@ -289,7 +340,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, please open an issue on GitHub or contact [your-email@example.com](mailto:your-email@example.com).
+For support, please open an issue on GitHub or contact [cynthiakamau54@gmail.com](mailto:cynthiakamau54@gmail.com).
 
 ## 🙏 Acknowledgments
 

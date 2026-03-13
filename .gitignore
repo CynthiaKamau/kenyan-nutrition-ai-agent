@@ -1,0 +1,49 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+ENV/
+virtualenv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Testing and Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.log

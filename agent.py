@@ -1,9 +1,36 @@
-from typing import Dict, Any
+from typing import Dict, Any, TypedDict, List
 import logging
 import json
+import os
+from copy import deepcopy
 from sub_agents.patient_profiles.agent import PatientProfileAgent
 from sub_agents.regions_for_food.agent import RegionalFoodAgent
 from sub_agents.food_recommendations.agent import FoodRecommendationAgent
+
+try:
+    from langgraph.graph import StateGraph, END
+except Exception:
+    StateGraph = None
+    END = None
+
+try:
+    from langchain_openai import ChatOpenAI
+except Exception:
+    ChatOpenAI = None
+
+
+class RecommendationGraphState(TypedDict, total=False):
+    patient_input: Dict[str, Any]
+    patient_profile: Dict[str, Any]
+    regional_foods: Dict[str, Any]
+    recommendations: Dict[str, Any]
+    evaluation: Dict[str, Any]
+    summary: Dict[str, Any]
+    iterations: int
+    max_iterations: int
+    target_score: float
+    use_llm_evaluator: bool
+    trace: List[Dict[str, Any]]
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -18,8 +45,322 @@ class KenyanNutritionAgent:
         self.patient_agent = PatientProfileAgent()
         self.regional_agent = RegionalFoodAgent()
         self.recommendation_agent = FoodRecommendationAgent()
+        self._llm = None
+        self._recommendation_graph = self._build_recommendation_graph()
         
         self.logger.info("Kenyan Nutrition Agent initialized successfully")
+
+    def _build_recommendation_graph(self):
+        """Build a LangGraph workflow for iterative recommendation + evaluation."""
+        if StateGraph is None or END is None:
+            self.logger.warning("LangGraph not available; graph-based workflow will use fallback path.")
+            return None
+
+        graph_builder = StateGraph(RecommendationGraphState)
+        graph_builder.add_node("build_profile", self._graph_build_profile)
+        graph_builder.add_node("fetch_regional_foods", self._graph_fetch_regional_foods)
+        graph_builder.add_node("generate_recommendations", self._graph_generate_recommendations)
+        graph_builder.add_node("evaluate_recommendations", self._graph_evaluate_recommendations)
+        graph_builder.add_node("improve_recommendations", self._graph_improve_recommendations)
+
+        graph_builder.set_entry_point("build_profile")
+        graph_builder.add_edge("build_profile", "fetch_regional_foods")
+        graph_builder.add_edge("fetch_regional_foods", "generate_recommendations")
+        graph_builder.add_edge("generate_recommendations", "evaluate_recommendations")
+        graph_builder.add_conditional_edges(
+            "evaluate_recommendations",
+            self._graph_route_after_evaluate,
+            {
+                "improve": "improve_recommendations",
+                "end": END,
+            },
+        )
+        graph_builder.add_edge("improve_recommendations", "evaluate_recommendations")
+
+        return graph_builder.compile()
+
+    def _graph_build_profile(self, state: RecommendationGraphState) -> Dict[str, Any]:
+        patient_input = state["patient_input"]
+        patient_profile = self.patient_agent.create_patient_profile(
+            age=patient_input["age"],
+            weight=patient_input["weight"],
+            height=patient_input["height"],
+            blood_sugar=patient_input["blood_sugar"],
+            blood_pressure=patient_input["blood_pressure"],
+            diabetes_status=patient_input["diabetes_status"],
+            location=patient_input["location"],
+        )
+        return {
+            "patient_profile": patient_profile,
+            "trace": state.get("trace", []) + [{"step": "build_profile", "health_category": patient_profile["health_category"]}],
+        }
+
+    def _graph_fetch_regional_foods(self, state: RecommendationGraphState) -> Dict[str, Any]:
+        location = state["patient_input"]["location"]
+        regional_foods = self.regional_agent.data_loader.get_regional_foods(location)
+        available_foods_count = sum(len(foods) for foods in regional_foods.values())
+        return {
+            "regional_foods": regional_foods,
+            "trace": state.get("trace", []) + [{"step": "fetch_regional_foods", "available_foods": available_foods_count}],
+        }
+
+    def _graph_generate_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
+        recommendations = self.recommendation_agent.generate_recommendations(state["patient_profile"])
+        return {
+            "recommendations": recommendations,
+            "trace": state.get("trace", []) + [{"step": "generate_recommendations"}],
+        }
+
+    def _graph_evaluate_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
+        if state.get("use_llm_evaluator", False):
+            evaluation = self._evaluate_recommendations_with_llm(
+                profile=state["patient_profile"],
+                recommendations=state["recommendations"],
+            )
+        else:
+            evaluation = self._evaluate_recommendations_heuristic(
+                profile=state["patient_profile"],
+                recommendations=state["recommendations"],
+            )
+
+        return {
+            "evaluation": evaluation,
+            "trace": state.get("trace", []) + [{"step": "evaluate_recommendations", "score": evaluation["score"], "method": evaluation["method"]}],
+        }
+
+    def _graph_improve_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
+        improved_recommendations = self._improve_recommendations(
+            profile=state["patient_profile"],
+            regional_foods=state["regional_foods"],
+            recommendations=state["recommendations"],
+            evaluation=state["evaluation"],
+        )
+        iterations = state.get("iterations", 0) + 1
+        return {
+            "recommendations": improved_recommendations,
+            "iterations": iterations,
+            "trace": state.get("trace", []) + [{"step": "improve_recommendations", "iteration": iterations}],
+        }
+
+    def _graph_route_after_evaluate(self, state: RecommendationGraphState) -> str:
+        score = state.get("evaluation", {}).get("score", 0.0)
+        target_score = state.get("target_score", 0.8)
+        iterations = state.get("iterations", 0)
+        max_iterations = state.get("max_iterations", 2)
+
+        if score >= target_score or iterations >= max_iterations:
+            return "end"
+        return "improve"
+
+    def _get_low_gi_foods(self, foods: List[str]) -> List[str]:
+        low_gi_foods = []
+        for food in foods:
+            nutrition = self.regional_agent.get_nutritional_info(food)
+            if nutrition.get("gi", 50) < 55:
+                low_gi_foods.append(food)
+        return low_gi_foods
+
+    def _evaluate_recommendations_heuristic(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
+        score = 1.0
+        issues = []
+        restrictions = profile.get("dietary_restrictions", {})
+        meal_plan = recommendations.get("meal_plan", {})
+
+        def flatten_meal_foods(section: Dict[str, Any]) -> List[str]:
+            flattened = []
+            for foods in section.values():
+                if isinstance(foods, list):
+                    flattened.extend(foods)
+            return flattened
+
+        breakfast_foods = flatten_meal_foods(meal_plan.get("breakfast", {}))
+        snack_foods = flatten_meal_foods(meal_plan.get("snacks", {}))
+
+        if restrictions.get("limit_sugar", False):
+            high_gi_found = []
+            for food in breakfast_foods + snack_foods:
+                nutrition = self.regional_agent.get_nutritional_info(food)
+                if nutrition.get("gi", 50) >= 55:
+                    high_gi_found.append(food)
+            if high_gi_found:
+                score -= 0.35
+                issues.append(f"high_gi_breakfast_or_snacks: {', '.join(sorted(set(high_gi_found)))}")
+
+        preferred_foods = recommendations.get("preferred_foods", {})
+        if not preferred_foods.get("lean_proteins"):
+            score -= 0.2
+            issues.append("missing_lean_proteins")
+
+        portion_guidelines = recommendations.get("portion_guidelines", {})
+        if restrictions.get("portion_control", False):
+            if not all(str(value).lower().startswith(("small", "moderate")) for value in portion_guidelines.values()):
+                score -= 0.15
+                issues.append("portion_control_not_reflected")
+
+        final_score = max(0.0, min(1.0, round(score, 3)))
+        return {
+            "score": final_score,
+            "passes": final_score >= 0.8,
+            "issues": issues,
+            "method": "heuristic",
+        }
+
+    def _evaluate_recommendations_with_llm(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
+        if ChatOpenAI is None:
+            self.logger.warning("langchain_openai not available. Falling back to heuristic evaluator.")
+            return self._evaluate_recommendations_heuristic(profile, recommendations)
+
+        if not os.getenv("OPENAI_API_KEY"):
+            self.logger.warning("OPENAI_API_KEY not set. Falling back to heuristic evaluator.")
+            return self._evaluate_recommendations_heuristic(profile, recommendations)
+
+        try:
+            if self._llm is None:
+                self._llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+            prompt = (
+                "You are a strict nutrition recommendation evaluator. "
+                "Evaluate quality for diabetes/portion-control safety and practical meal diversity. "
+                "Respond with strict JSON only in this format: "
+                "{\"score\": <0.0-1.0>, \"passes\": <true/false>, \"issues\": [<strings>]}.\n\n"
+                f"Patient profile: {json.dumps(profile)}\n"
+                f"Recommendations: {json.dumps(recommendations)}"
+            )
+            response = self._llm.invoke(prompt)
+            content = response.content if isinstance(response.content, str) else json.dumps(response.content)
+
+            start_index = content.find("{")
+            end_index = content.rfind("}")
+            json_content = content[start_index:end_index + 1] if start_index != -1 and end_index != -1 else content
+            parsed = json.loads(json_content)
+
+            score = float(parsed.get("score", 0.0))
+            issues = parsed.get("issues", [])
+            passes = bool(parsed.get("passes", score >= 0.8))
+
+            return {
+                "score": max(0.0, min(1.0, round(score, 3))),
+                "passes": passes,
+                "issues": issues if isinstance(issues, list) else [str(issues)],
+                "method": "llm",
+            }
+        except Exception as error:
+            self.logger.warning(f"LLM evaluation failed ({error}). Falling back to heuristic evaluator.")
+            return self._evaluate_recommendations_heuristic(profile, recommendations)
+
+    def _improve_recommendations(
+        self,
+        profile: Dict[str, Any],
+        regional_foods: Dict[str, List[str]],
+        recommendations: Dict[str, Any],
+        evaluation: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        improved = deepcopy(recommendations)
+        issues = [str(item) for item in evaluation.get("issues", [])]
+        meal_plan = improved.get("meal_plan", {})
+        restrictions = profile.get("dietary_restrictions", {})
+
+        if restrictions.get("limit_sugar", False) and any("high_gi" in issue for issue in issues):
+            breakfast = meal_plan.get("breakfast", {})
+            snacks = meal_plan.get("snacks", {})
+
+            breakfast_low_gi_grains = self._get_low_gi_foods(regional_foods.get("grains", []))
+            breakfast_low_gi_fruits = self._get_low_gi_foods(regional_foods.get("fruits", []))
+
+            if breakfast_low_gi_grains:
+                breakfast["grains"] = breakfast_low_gi_grains[:2]
+            if breakfast_low_gi_fruits:
+                breakfast["fruits"] = breakfast_low_gi_fruits[:2]
+                snacks["fruits"] = breakfast_low_gi_fruits[:2]
+
+        if any("missing_lean_proteins" in issue for issue in issues):
+            lean_candidates = [protein for protein in regional_foods.get("proteins", []) if protein in ["fish", "chicken", "eggs"]]
+            if lean_candidates:
+                improved.setdefault("preferred_foods", {})["lean_proteins"] = lean_candidates[:2]
+
+        if restrictions.get("portion_control", False) and any("portion_control" in issue for issue in issues):
+            adjusted_portions = {}
+            for category, guideline in improved.get("portion_guidelines", {}).items():
+                lower = str(guideline).lower()
+                if not lower.startswith("small") and not lower.startswith("moderate"):
+                    adjusted_portions[category] = f"Moderate {guideline}"
+                else:
+                    adjusted_portions[category] = guideline
+            improved["portion_guidelines"] = adjusted_portions
+
+        return improved
+
+    def get_nutrition_recommendations_graph(
+        self,
+        age: int,
+        weight: float,
+        height: float,
+        blood_sugar: float,
+        blood_pressure: Dict[str, int],
+        diabetes_status: str,
+        location: str,
+        use_llm_evaluator: bool = False,
+        max_iterations: int = 2,
+        target_score: float = 0.8,
+    ) -> Dict[str, Any]:
+        """Get recommendations via LangGraph with evaluate-improve loop and fallback support."""
+        patient_input = {
+            "age": age,
+            "weight": weight,
+            "height": height,
+            "blood_sugar": blood_sugar,
+            "blood_pressure": blood_pressure,
+            "diabetes_status": diabetes_status,
+            "location": location,
+        }
+
+        if self._recommendation_graph is None:
+            self.logger.info("Graph workflow unavailable. Using deterministic workflow fallback.")
+            base_report = self.get_nutrition_recommendations(**patient_input)
+            evaluation = self._evaluate_recommendations_heuristic(
+                profile=base_report["patient_profile"],
+                recommendations=base_report["recommendations"],
+            )
+            base_report["evaluation"] = evaluation
+            base_report["graph_metadata"] = {
+                "graph_enabled": False,
+                "iterations": 0,
+                "target_score": target_score,
+                "max_iterations": max_iterations,
+                "evaluator": "heuristic",
+                "trace": [{"step": "fallback_workflow"}],
+            }
+            return base_report
+
+        final_state = self._recommendation_graph.invoke(
+            {
+                "patient_input": patient_input,
+                "iterations": 0,
+                "max_iterations": max_iterations,
+                "target_score": target_score,
+                "use_llm_evaluator": use_llm_evaluator,
+                "trace": [],
+            }
+        )
+
+        patient_profile = final_state["patient_profile"]
+        recommendations = final_state["recommendations"]
+
+        return {
+            "patient_profile": patient_profile,
+            "regional_foods": final_state["regional_foods"],
+            "recommendations": recommendations,
+            "summary": self._generate_summary(patient_profile, recommendations),
+            "evaluation": final_state.get("evaluation", {}),
+            "graph_metadata": {
+                "graph_enabled": True,
+                "iterations": final_state.get("iterations", 0),
+                "target_score": target_score,
+                "max_iterations": max_iterations,
+                "evaluator": final_state.get("evaluation", {}).get("method", "heuristic"),
+                "trace": final_state.get("trace", []),
+            },
+        }
     
     def get_nutrition_recommendations(self, 
                                     age: int,
@@ -60,9 +401,9 @@ class KenyanNutritionAgent:
         )
         self.logger.info(f"Patient profile created - Health category: {patient_profile['health_category']}")
         
-        # Step 2: Get regional foods using RegionalFoodAgent
+        # Step 2: Get regional foods using data loader
         self.logger.info("Step 2: Identifying regional foods...")
-        regional_foods = self.regional_agent.get_regional_foods(location)
+        regional_foods = self.regional_agent.data_loader.get_regional_foods(location)
         available_foods_count = sum(len(foods) for foods in regional_foods.values())
         self.logger.info(f"Found {available_foods_count} foods available in {location} region")
         

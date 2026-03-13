@@ -12,7 +12,7 @@ class FoodRecommendationAgent:
     def generate_recommendations(self, patient_profile: Dict[str, Any]) -> Dict[str, Any]:
         """Generate personalized food recommendations based on patient profile and regional availability"""
         
-        regional_foods = self.regional_agent.get_regional_foods(patient_profile["location"])
+        regional_foods = self.regional_agent.data_loader.get_regional_foods(patient_profile["location"])
         dietary_restrictions = patient_profile["dietary_restrictions"]
         health_category = patient_profile["health_category"]
         diabetes_status = patient_profile["diabetes_status"]

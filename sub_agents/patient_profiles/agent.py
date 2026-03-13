@@ -12,7 +12,8 @@ class PatientProfileAgent:
                              blood_sugar: float,
                              blood_pressure: Dict[str, int],  # {"systolic": 120, "diastolic": 80}
                              diabetes_status: str,  # "none", "type1", "type2", "prediabetes"
-                             location: str) -> Dict[str, Any]:
+                             location: str,
+                             religion: Optional[str] = None) -> Dict[str, Any]:
         """Create a comprehensive patient profile"""
         
         bmi = self.calculate_bmi(weight, height)
@@ -29,6 +30,7 @@ class PatientProfileAgent:
             "blood_pressure": blood_pressure,
             "diabetes_status": diabetes_status,
             "location": location,
+            "religion": religion,
             "health_category": health_category,
             "dietary_restrictions": self.get_dietary_restrictions(diabetes_status, health_category),
             "calorie_needs": self.calculate_calorie_needs(age, weight, height)
