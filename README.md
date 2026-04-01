@@ -10,6 +10,8 @@ An intelligent, agentic nutrition recommendation system powered by **LangGraph**
 - **Diabetes Management**: Specialized recommendations for Type 1, Type 2, and pre-diabetes patients
 - **Evaluation-Improve Loop**: LangGraph-based feedback mechanism with heuristic or LLM-based quality scoring
 - **Interactive Interface**: User-friendly command-line interface for data input and demo mode
+- **Structured Religion Input**: Predefined religion options in interactive mode (Christianity, Islam, Hinduism, Buddhism, Judaism, Polytheism)
+- **Optional Dietary Override Input**: Keep automatic restrictions or provide manual restriction overrides when needed
 - **Comprehensive Reports**: Detailed nutrition reports with meal timing, portion guidelines, and dietary restrictions supported by evaluation traces
 
 ## 🏗️ Architecture
@@ -26,9 +28,9 @@ The system uses a **multi-agent architecture** with LangGraph-based workflows fo
 
 - **`get_nutrition_recommendations()`**: Simple 3-step deterministic pipeline (fast)
   - Profile → Regional Foods → Recommendations
-  
 - **`get_nutrition_recommendations_graph()`**: LangGraph-based evaluation-improve loop (quality-focused)
   - Profile → Regional Foods → Recommendations → **Evaluate** → **Improve** → Re-evaluate
+  - Heuristic evaluation checks glycemic suitability across **breakfast, lunch, dinner, and snacks**
   - Iterates until target score achieved or max iterations reached
   - Returns evaluation score, improvement trace, and iteration count
 
@@ -114,9 +116,9 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
    ```bash
    pip install langchain langchain-openai langgraph openpyxl pandas
    ```
-   
+
    Or install all at once:
-   
+
    ```bash
    pip install -r requirements.txt
    ```
@@ -138,6 +140,8 @@ Select option `1` for interactive mode and provide:
 - Blood sugar levels and blood pressure readings
 - Diabetes status
 - Geographical location in Kenya
+- Religion from a predefined list (or prefer not to say)
+- Optional manual dietary restriction overrides
 
 ### Demo Mode
 
@@ -164,6 +168,14 @@ result = agent.get_nutrition_recommendations_graph(
     blood_pressure={"systolic": 140, "diastolic": 85},
     diabetes_status="prediabetes",
     location="nairobi",
+    religion="christianity",  # optional
+    dietary_restrictions={      # optional overrides
+      "limit_sugar": True,
+      "portion_control": True,
+      "limit_sodium": True,
+      "increase_fiber": True,
+      "limit_saturated_fat": True,
+   },
     use_llm_evaluator=False,  # Use heuristic evaluator
     max_iterations=3,
     target_score=0.8  # Quality threshold
@@ -299,6 +311,11 @@ The system generates comprehensive JSON reports containing:
 - Portion guidelines and meal timing
 
 Reports are saved as: `nutrition_report_[location]_[age]y.json`
+
+By default reports are written to the local `outputs/` directory in the project root:
+
+- Interactive mode: `outputs/nutrition_report_[location]_[age]y.json`
+- Demo mode: `outputs/nutrition_report_demo.json`
 
 ## 🤝 Contributing
 
