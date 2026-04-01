@@ -1,4 +1,4 @@
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Optional
 import logging
 from ..patient_profiles.agent import PatientProfileAgent
 from ..regions_for_food.agent import RegionalFoodAgent
@@ -9,10 +9,17 @@ class FoodRecommendationAgent:
         self.patient_agent = PatientProfileAgent()
         self.regional_agent = RegionalFoodAgent()
     
-    def generate_recommendations(self, patient_profile: Dict[str, Any]) -> Dict[str, Any]:
-        """Generate personalized food recommendations based on patient profile and regional availability"""
-        
-        regional_foods = self.regional_agent.data_loader.get_regional_foods(patient_profile["location"])
+    def generate_recommendations(
+        self,
+        patient_profile: Dict[str, Any],
+        regional_foods: Optional[Dict[str, List[str]]] = None,
+    ) -> Dict[str, Any]:
+        """Generate personalized recommendations using profile + Excel-backed regional foods."""
+
+        # Prefer caller-provided regional foods so orchestration can pass Excel-derived data directly.
+        if regional_foods is None:
+            regional_foods = self.regional_agent.data_loader.get_regional_foods(patient_profile["location"])
+
         dietary_restrictions = patient_profile["dietary_restrictions"]
         health_category = patient_profile["health_category"]
         diabetes_status = patient_profile["diabetes_status"]
@@ -24,8 +31,35 @@ class FoodRecommendationAgent:
             "portion_guidelines": self._get_portion_guidelines(patient_profile),
             "meal_timing": self._get_meal_timing_advice(diabetes_status)
         }
+
+        recommendations["debug_regional_usage"] = self._build_regional_usage_debug(
+            regional_foods=regional_foods,
+            meal_plan=recommendations["meal_plan"],
+        )
         
         return recommendations
+
+    def _build_regional_usage_debug(
+        self,
+        regional_foods: Dict[str, List[str]],
+        meal_plan: Dict[str, Dict[str, List[str]]],
+    ) -> Dict[str, Any]:
+        """Provide lightweight metadata to verify regional-food usage in outputs."""
+        available_categories = sorted([category for category, foods in regional_foods.items() if foods])
+        used_categories = set()
+        selected_food_count = 0
+
+        for meal_sections in meal_plan.values():
+            for category, foods in meal_sections.items():
+                if foods:
+                    used_categories.add(category)
+                    selected_food_count += len(foods)
+
+        return {
+            "available_categories": available_categories,
+            "used_categories_in_meal_plan": sorted(used_categories),
+            "selected_food_items_in_meal_plan": selected_food_count,
+        }
     
     def _create_meal_plan(self, regional_foods: Dict[str, List[str]], 
                          restrictions: Dict[str, bool], 
@@ -57,25 +91,25 @@ class FoodRecommendationAgent:
         }
         
         # Breakfast recommendations
-        breakfast_grains = self._filter_by_gi(regional_foods["grains"], restrictions["limit_sugar"])
+        breakfast_grains = self._filter_by_gi(regional_foods.get("grains", []), restrictions["limit_sugar"])
         meal_plan["breakfast"]["grains"] = breakfast_grains[:2]
-        meal_plan["breakfast"]["proteins"] = [food for food in regional_foods["proteins"] if food in ["eggs", "milk"]][:1]
-        meal_plan["breakfast"]["fruits"] = self._filter_by_gi(regional_foods["fruits"], restrictions["limit_sugar"])[:2]
+        meal_plan["breakfast"]["proteins"] = [food for food in regional_foods.get("proteins", []) if food in ["eggs", "milk"]][:1]
+        meal_plan["breakfast"]["fruits"] = self._filter_by_gi(regional_foods.get("fruits", []), restrictions["limit_sugar"])[:2]
         
         # Lunch recommendations
-        meal_plan["lunch"]["grains"] = regional_foods["grains"][:1]
-        meal_plan["lunch"]["proteins"] = regional_foods["proteins"][:1]
-        meal_plan["lunch"]["vegetables"] = regional_foods["vegetables"][:3]
-        meal_plan["lunch"]["legumes"] = regional_foods["legumes"][:1]
+        meal_plan["lunch"]["grains"] = regional_foods.get("grains", [])[:1]
+        meal_plan["lunch"]["proteins"] = regional_foods.get("proteins", [])[:1]
+        meal_plan["lunch"]["vegetables"] = regional_foods.get("vegetables", [])[:3]
+        meal_plan["lunch"]["legumes"] = regional_foods.get("legumes", [])[:1]
         
         # Dinner recommendations
-        meal_plan["dinner"]["grains"] = regional_foods["grains"][:1]
-        meal_plan["dinner"]["proteins"] = regional_foods["proteins"][:1]
-        meal_plan["dinner"]["vegetables"] = regional_foods["vegetables"][:2]
+        meal_plan["dinner"]["grains"] = regional_foods.get("grains", [])[:1]
+        meal_plan["dinner"]["proteins"] = regional_foods.get("proteins", [])[:1]
+        meal_plan["dinner"]["vegetables"] = regional_foods.get("vegetables", [])[:2]
         
         # Snack recommendations
-        meal_plan["snacks"]["fruits"] = self._filter_by_gi(regional_foods["fruits"], restrictions["limit_sugar"])[:2]
-        meal_plan["snacks"]["nuts"] = [food for food in regional_foods["legumes"] if "nuts" in food or "groundnuts" in food][:1]
+        meal_plan["snacks"]["fruits"] = self._filter_by_gi(regional_foods.get("fruits", []), restrictions["limit_sugar"])[:2]
+        meal_plan["snacks"]["nuts"] = [food for food in regional_foods.get("legumes", []) if "nuts" in food or "groundnuts" in food][:1]
         
         return meal_plan
     

@@ -13,7 +13,8 @@ class PatientProfileAgent:
                              blood_pressure: Dict[str, int],  # {"systolic": 120, "diastolic": 80}
                              diabetes_status: str,  # "none", "type1", "type2", "prediabetes"
                              location: str,
-                             religion: Optional[str] = None) -> Dict[str, Any]:
+                             religion: Optional[str] = None,
+                             dietary_restrictions: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """Create a comprehensive patient profile"""
         
         bmi = self.calculate_bmi(weight, height)
@@ -21,6 +22,13 @@ class PatientProfileAgent:
             age, bmi, blood_sugar, blood_pressure, diabetes_status
         )
         
+        computed_restrictions = self.get_dietary_restrictions(diabetes_status, health_category)
+        merged_restrictions = dict(computed_restrictions)
+        if isinstance(dietary_restrictions, dict):
+            for key, value in dietary_restrictions.items():
+                if key in merged_restrictions:
+                    merged_restrictions[key] = bool(value)
+
         profile = {
             "age": age,
             "weight": weight,
@@ -32,7 +40,7 @@ class PatientProfileAgent:
             "location": location,
             "religion": religion,
             "health_category": health_category,
-            "dietary_restrictions": self.get_dietary_restrictions(diabetes_status, health_category),
+            "dietary_restrictions": merged_restrictions,
             "calorie_needs": self.calculate_calorie_needs(age, weight, height)
         }
         

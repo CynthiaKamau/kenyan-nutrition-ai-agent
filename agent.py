@@ -1,7 +1,8 @@
-from typing import Dict, Any, TypedDict, List
+from typing import Dict, Any, TypedDict, List, Optional
 import logging
 import json
 import os
+from pathlib import Path
 from copy import deepcopy
 from sub_agents.patient_profiles.agent import PatientProfileAgent
 from sub_agents.regions_for_food.agent import RegionalFoodAgent
@@ -30,6 +31,8 @@ class RecommendationGraphState(TypedDict, total=False):
     max_iterations: int
     target_score: float
     use_llm_evaluator: bool
+    religion: str
+    dietary_restrictions: Dict[str, bool]
     trace: List[Dict[str, Any]]
 
 # Configure logging
@@ -89,6 +92,8 @@ class KenyanNutritionAgent:
             blood_pressure=patient_input["blood_pressure"],
             diabetes_status=patient_input["diabetes_status"],
             location=patient_input["location"],
+            religion=patient_input.get("religion"),
+            dietary_restrictions=patient_input.get("dietary_restrictions"),
         )
         return {
             "patient_profile": patient_profile,
@@ -105,7 +110,10 @@ class KenyanNutritionAgent:
         }
 
     def _graph_generate_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
-        recommendations = self.recommendation_agent.generate_recommendations(state["patient_profile"])
+        recommendations = self.recommendation_agent.generate_recommendations(
+            state["patient_profile"],
+            state.get("regional_foods", {}),
+        )
         return {
             "recommendations": recommendations,
             "trace": state.get("trace", []) + [{"step": "generate_recommendations"}],
@@ -174,17 +182,20 @@ class KenyanNutritionAgent:
             return flattened
 
         breakfast_foods = flatten_meal_foods(meal_plan.get("breakfast", {}))
+        lunch_foods = flatten_meal_foods(meal_plan.get("lunch", {}))
+        dinner_foods = flatten_meal_foods(meal_plan.get("dinner", {}))
         snack_foods = flatten_meal_foods(meal_plan.get("snacks", {}))
+        all_meal_foods = breakfast_foods + lunch_foods + dinner_foods + snack_foods
 
         if restrictions.get("limit_sugar", False):
             high_gi_found = []
-            for food in breakfast_foods + snack_foods:
+            for food in all_meal_foods:
                 nutrition = self.regional_agent.get_nutritional_info(food)
                 if nutrition.get("gi", 50) >= 55:
                     high_gi_found.append(food)
             if high_gi_found:
                 score -= 0.35
-                issues.append(f"high_gi_breakfast_or_snacks: {', '.join(sorted(set(high_gi_found)))}")
+                issues.append(f"high_gi_meal_plan: {', '.join(sorted(set(high_gi_found)))}")
 
         preferred_foods = recommendations.get("preferred_foods", {})
         if not preferred_foods.get("lean_proteins"):
@@ -262,16 +273,20 @@ class KenyanNutritionAgent:
 
         if restrictions.get("limit_sugar", False) and any("high_gi" in issue for issue in issues):
             breakfast = meal_plan.get("breakfast", {})
+            lunch = meal_plan.get("lunch", {})
+            dinner = meal_plan.get("dinner", {})
             snacks = meal_plan.get("snacks", {})
 
-            breakfast_low_gi_grains = self._get_low_gi_foods(regional_foods.get("grains", []))
-            breakfast_low_gi_fruits = self._get_low_gi_foods(regional_foods.get("fruits", []))
+            low_gi_grains = self._get_low_gi_foods(regional_foods.get("grains", []))
+            low_gi_fruits = self._get_low_gi_foods(regional_foods.get("fruits", []))
 
-            if breakfast_low_gi_grains:
-                breakfast["grains"] = breakfast_low_gi_grains[:2]
-            if breakfast_low_gi_fruits:
-                breakfast["fruits"] = breakfast_low_gi_fruits[:2]
-                snacks["fruits"] = breakfast_low_gi_fruits[:2]
+            if low_gi_grains:
+                breakfast["grains"] = low_gi_grains[:2]
+                lunch["grains"] = low_gi_grains[:1]
+                dinner["grains"] = low_gi_grains[:1]
+            if low_gi_fruits:
+                breakfast["fruits"] = low_gi_fruits[:2]
+                snacks["fruits"] = low_gi_fruits[:2]
 
         if any("missing_lean_proteins" in issue for issue in issues):
             lean_candidates = [protein for protein in regional_foods.get("proteins", []) if protein in ["fish", "chicken", "eggs"]]
@@ -299,6 +314,8 @@ class KenyanNutritionAgent:
         blood_pressure: Dict[str, int],
         diabetes_status: str,
         location: str,
+        religion: Optional[str] = None,
+        dietary_restrictions: Optional[Dict[str, bool]] = None,
         use_llm_evaluator: bool = False,
         max_iterations: int = 2,
         target_score: float = 0.8,
@@ -312,6 +329,8 @@ class KenyanNutritionAgent:
             "blood_pressure": blood_pressure,
             "diabetes_status": diabetes_status,
             "location": location,
+            "religion": religion,
+            "dietary_restrictions": dietary_restrictions,
         }
 
         if self._recommendation_graph is None:
@@ -369,7 +388,9 @@ class KenyanNutritionAgent:
                                     blood_sugar: float,
                                     blood_pressure: Dict[str, int],
                                     diabetes_status: str,
-                                    location: str) -> Dict[str, Any]:
+                                    location: str,
+                                    religion: Optional[str] = None,
+                                    dietary_restrictions: Optional[Dict[str, bool]] = None) -> Dict[str, Any]:
         """
         Complete workflow to get personalized nutrition recommendations
         
@@ -381,6 +402,8 @@ class KenyanNutritionAgent:
             blood_pressure: Dict with 'systolic' and 'diastolic' values
             diabetes_status: 'none', 'type1', 'type2', or 'prediabetes'
             location: Patient's geographical location in Kenya
+            religion: Optional religion/cultural context to keep in profile metadata
+            dietary_restrictions: Optional overrides for computed restrictions
         
         Returns:
             Complete nutrition recommendation report
@@ -397,7 +420,9 @@ class KenyanNutritionAgent:
             blood_sugar=blood_sugar,
             blood_pressure=blood_pressure,
             diabetes_status=diabetes_status,
-            location=location
+            location=location,
+            religion=religion,
+            dietary_restrictions=dietary_restrictions,
         )
         self.logger.info(f"Patient profile created - Health category: {patient_profile['health_category']}")
         
@@ -409,7 +434,10 @@ class KenyanNutritionAgent:
         
         # Step 3: Generate recommendations using FoodRecommendationAgent
         self.logger.info("Step 3: Generating personalized food recommendations...")
-        recommendations = self.recommendation_agent.generate_recommendations(patient_profile)
+        recommendations = self.recommendation_agent.generate_recommendations(
+            patient_profile,
+            regional_foods,
+        )
         self.logger.info("Food recommendations generated successfully")
         
         # Compile complete report
@@ -614,6 +642,36 @@ class KenyanNutritionAgent:
                 location = input("Enter your location: ").strip().lower()
             else:
                 location = location_choice.strip().lower()
+
+            print("\nReligion options:")
+            religions = [
+                "christianity",
+                "islam",
+                "hinduism",
+                "buddhism",
+                "judaism",
+                "polytheism",
+            ]
+            for i, value in enumerate(religions, 1):
+                print(f"  {i}. {value.title()}")
+            print("  7. Prefer not to say")
+
+            religion_choice = input("Select religion (1-7): ").strip()
+            if religion_choice.isdigit() and 1 <= int(religion_choice) <= 6:
+                religion = religions[int(religion_choice) - 1]
+            else:
+                religion = None
+
+            custom_restrictions = None
+            use_custom_restrictions = input("Set custom dietary restrictions? (y/n): ").strip().lower()
+            if use_custom_restrictions == "y":
+                custom_restrictions = {
+                    "limit_sugar": input("  Limit sugar? (y/n): ").strip().lower() == "y",
+                    "portion_control": input("  Portion control? (y/n): ").strip().lower() == "y",
+                    "limit_sodium": input("  Limit sodium? (y/n): ").strip().lower() == "y",
+                    "increase_fiber": input("  Increase fiber? (y/n): ").strip().lower() == "y",
+                    "limit_saturated_fat": input("  Limit saturated fat? (y/n): ").strip().lower() == "y",
+                }
             
             # Compile patient data
             patient_data = {
@@ -623,7 +681,9 @@ class KenyanNutritionAgent:
                 "blood_sugar": blood_sugar,
                 "blood_pressure": blood_pressure,
                 "diabetes_status": diabetes_status,
-                "location": location
+                "location": location,
+                "religion": religion,
+                "dietary_restrictions": custom_restrictions,
             }
             
             # Confirmation
@@ -635,6 +695,8 @@ class KenyanNutritionAgent:
             print(f"   Blood Pressure: {systolic}/{diastolic} mmHg")
             print(f"   Diabetes Status: {diabetes_status.replace('_', ' ').title()}")
             print(f"   Location: {location.title()}")
+            print(f"   Religion: {(religion or 'Not specified').title()}")
+            print(f"   Dietary Restriction Override: {'Yes' if custom_restrictions else 'No'}")
             
             confirm = input("\nIs this information correct? (y/n): ").lower()
             if confirm != 'y':
@@ -679,11 +741,13 @@ class KenyanNutritionAgent:
             save_report = input("\n💾 Would you like to save the full report to a file? (y/n): ").lower()
             if save_report == 'y':
                 filename = f"nutrition_report_{patient_data['location']}_{patient_data['age']}y.json"
-                filepath = f"/Users/cynthiakamau/PycharmProjects/nutrition-ai-agent/{filename}"
+                output_dir = Path.cwd() / "outputs"
+                output_dir.mkdir(parents=True, exist_ok=True)
+                filepath = output_dir / filename
                 
                 with open(filepath, 'w') as f:
                     json.dump(recommendations, f, indent=2)
-                print(f"✅ Report saved to: {filename}")
+                print(f"✅ Report saved to: {filepath}")
             
             print("\n🎉 Thank you for using Kenyan Nutrition AI!")
             print("Stay healthy and follow your personalized recommendations!")
@@ -731,9 +795,12 @@ def main():
             nutrition_agent.print_recommendations(recommendations)
             
             # Save demo report
-            with open('/Users/cynthiakamau/PycharmProjects/nutrition-ai-agent/nutrition_report_demo.json', 'w') as f:
+            output_dir = Path.cwd() / "outputs"
+            output_dir.mkdir(parents=True, exist_ok=True)
+            demo_report_path = output_dir / "nutrition_report_demo.json"
+            with open(demo_report_path, 'w') as f:
                 json.dump(recommendations, f, indent=2)
-            print(f"\n💾 Demo report saved to: nutrition_report_demo.json")
+            print(f"\n💾 Demo report saved to: {demo_report_path}")
             
         else:
             print("❌ Invalid selection. Please run the program again.")

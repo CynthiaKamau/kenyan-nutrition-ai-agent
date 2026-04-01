@@ -1,0 +1,160 @@
+{
+  "patient_profile": {
+    "age": 34,
+    "weight": 67.0,
+    "height": 1.63,
+    "bmi": 25.22,
+    "blood_sugar": 6.0,
+    "blood_pressure": {
+      "systolic": 120,
+      "diastolic": 80
+    },
+    "diabetes_status": "prediabetes",
+    "location": "mombasa",
+    "religion": "islam",
+    "health_category": "high_risk",
+    "dietary_restrictions": {
+      "limit_sugar": true,
+      "limit_sodium": true,
+      "portion_control": true,
+      "increase_fiber": true,
+      "limit_saturated_fat": true
+    },
+    "calorie_needs": 2361
+  },
+  "regional_foods": {
+    "grains": [
+      "maize",
+      "sorghum",
+      "millet"
+    ],
+    "vegetables": [
+      "kale",
+      "spinach",
+      "sweet_potatoes",
+      "amaranth",
+      "nightshade",
+      "spider_plant"
+    ],
+    "fruits": [
+      "bananas",
+      "mangoes"
+    ],
+    "legumes": [
+      "beans",
+      "cowpeas"
+    ],
+    "proteins": [
+      "fish",
+      "goat_meat"
+    ]
+  },
+  "recommendations": {
+    "meal_plan": {
+      "breakfast": {
+        "grains": [
+          "maize",
+          "sorghum"
+        ],
+        "proteins": [],
+        "vegetables": [],
+        "fruits": [
+          "mangoes"
+        ]
+      },
+      "lunch": {
+        "grains": [
+          "maize"
+        ],
+        "proteins": [
+          "fish"
+        ],
+        "vegetables": [
+          "kale",
+          "spinach",
+          "sweet_potatoes"
+        ],
+        "legumes": [
+          "beans"
+        ]
+      },
+      "dinner": {
+        "grains": [
+          "maize"
+        ],
+        "proteins": [
+          "fish"
+        ],
+        "vegetables": [
+          "kale",
+          "spinach"
+        ]
+      },
+      "snacks": {
+        "fruits": [
+          "mangoes"
+        ],
+        "nuts": []
+      }
+    },
+    "preferred_foods": {
+      "high_fiber": [
+        "kale",
+        "spinach",
+        "beans",
+        "sweet_potatoes"
+      ],
+      "low_sodium": [],
+      "lean_proteins": [
+        "fish"
+      ],
+      "complex_carbs": [
+        "millet",
+        "sorghum",
+        "sweet_potatoes"
+      ]
+    },
+    "foods_to_limit": {
+      "high_gi_foods": [],
+      "high_sodium_foods": [],
+      "high_fat_foods": []
+    },
+    "portion_guidelines": {
+      "grains": "Small 1/2 cup cooked",
+      "vegetables": "Small 1 cup raw or 1/2 cup cooked",
+      "fruits": "Small 1 medium fruit or 1/2 cup",
+      "proteins": "Small palm-sized portion (3-4 oz)",
+      "legumes": "Small 1/2 cup cooked"
+    },
+    "meal_timing": {
+      "frequency": "3 main meals with optional healthy snacks",
+      "timing": "Regular meal times help maintain energy levels",
+      "breakfast": "Start your day with a balanced meal",
+      "dinner": "Light dinner 2-3 hours before bedtime"
+    },
+    "debug_regional_usage": {
+      "available_categories": [
+        "fruits",
+        "grains",
+        "legumes",
+        "proteins",
+        "vegetables"
+      ],
+      "used_categories_in_meal_plan": [
+        "fruits",
+        "grains",
+        "legumes",
+        "proteins",
+        "vegetables"
+      ],
+      "selected_food_items_in_meal_plan": 14
+    }
+  },
+  "summary": {
+    "health_overview": "Patient is high_risk with Overweight BMI (25.22) and prediabetes diabetes status",
+    "key_dietary_focus": "blood sugar control, portion management, sodium reduction, fiber intake",
+    "meal_frequency": "3 main meals with optional healthy snacks",
+    "primary_foods_to_include": "fish",
+    "foods_to_limit": ""
+  }
+}
