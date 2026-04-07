@@ -1,0 +1,6802 @@
+[
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kiambu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nyeri",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kitui",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Machakos",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kisumu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Homa Bay",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Nakuru",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Uasin Gishu",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kilifi",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "amaranth"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spinach",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "High fiber meal supports steadier glucose response",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "kale",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "nightshade"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "amaranth",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "spider_plant",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "bananas",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 7
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "spinach",
+        "fish",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "spider_plant"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 3
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "bananas"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "fish"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  },
+  {
+    "input": {
+      "region": "Kwale",
+      "season": "all_year",
+      "meal": [
+        "amaranth",
+        "nightshade",
+        "goat_meat"
+      ]
+    },
+    "output": {
+      "diabetes_score": 10,
+      "reasoning": "Relatively balanced glycemic profile",
+      "portion_advice": "maintain current portions",
+      "diversity_score": 5
+    }
+  }
+]

@@ -156,5 +156,36 @@
     "meal_frequency": "3 main meals with optional healthy snacks",
     "primary_foods_to_include": "fish",
     "foods_to_limit": ""
+  },
+  "evaluation": {
+    "score": 0.896,
+    "passes": true,
+    "issues": [],
+    "method": "custom_model_only"
+  },
+  "graph_metadata": {
+    "graph_enabled": true,
+    "iterations": 0,
+    "target_score": 0.8,
+    "max_iterations": 2,
+    "evaluator": "custom_model_only",
+    "trace": [
+      {
+        "step": "build_profile",
+        "health_category": "high_risk"
+      },
+      {
+        "step": "fetch_regional_foods",
+        "available_foods": 15
+      },
+      {
+        "step": "generate_recommendations"
+      },
+      {
+        "step": "evaluate_recommendations",
+        "score": 0.896,
+        "method": "custom_model_only"
+      }
+    ]
   }
 }

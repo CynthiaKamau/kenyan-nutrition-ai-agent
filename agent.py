@@ -1,9 +1,14 @@
 from typing import Dict, Any, TypedDict, List, Optional
 import logging
 import json
-import os
 from pathlib import Path
 from copy import deepcopy
+from models.inference import CustomModelInference
+from agents.diabetes_agent import DiabetesAgent
+from agents.portion_agent import PortionAgent
+from agents.diversity_agent import DiversityAgent
+from agents.cultural_agent import CulturalAgent
+from agents.aggregator import Aggregator
 from sub_agents.patient_profiles.agent import PatientProfileAgent
 from sub_agents.regions_for_food.agent import RegionalFoodAgent
 from sub_agents.food_recommendations.agent import FoodRecommendationAgent
@@ -13,12 +18,6 @@ try:
 except Exception:
     StateGraph = None
     END = None
-
-try:
-    from langchain_openai import ChatOpenAI
-except Exception:
-    ChatOpenAI = None
-
 
 class RecommendationGraphState(TypedDict, total=False):
     patient_input: Dict[str, Any]
@@ -48,10 +47,75 @@ class KenyanNutritionAgent:
         self.patient_agent = PatientProfileAgent()
         self.regional_agent = RegionalFoodAgent()
         self.recommendation_agent = FoodRecommendationAgent()
-        self._llm = None
+        self.diabetes_agent = DiabetesAgent()
+        self.portion_agent = PortionAgent()
+        self.diversity_agent = DiversityAgent()
+        self.cultural_agent = CulturalAgent()
+        self.aggregator = Aggregator()
+        self.model_inference = CustomModelInference()
         self._recommendation_graph = self._build_recommendation_graph()
         
         self.logger.info("Kenyan Nutrition Agent initialized successfully")
+
+    def _build_patient_input(
+        self,
+        age: int,
+        weight: float,
+        height: float,
+        blood_sugar: float,
+        blood_pressure: Dict[str, int],
+        diabetes_status: str,
+        location: str,
+        religion: Optional[str] = None,
+        dietary_restrictions: Optional[Dict[str, bool]] = None,
+    ) -> Dict[str, Any]:
+        return {
+            "age": age,
+            "weight": weight,
+            "height": height,
+            "blood_sugar": blood_sugar,
+            "blood_pressure": blood_pressure,
+            "diabetes_status": diabetes_status,
+            "location": location,
+            "religion": religion,
+            "dietary_restrictions": dietary_restrictions,
+        }
+
+    def _create_patient_profile_from_input(self, patient_input: Dict[str, Any]) -> Dict[str, Any]:
+        return self.patient_agent.create_patient_profile(
+            age=patient_input["age"],
+            weight=patient_input["weight"],
+            height=patient_input["height"],
+            blood_sugar=patient_input["blood_sugar"],
+            blood_pressure=patient_input["blood_pressure"],
+            diabetes_status=patient_input["diabetes_status"],
+            location=patient_input["location"],
+            religion=patient_input.get("religion"),
+            dietary_restrictions=patient_input.get("dietary_restrictions"),
+        )
+
+    def _fetch_regional_foods_by_location(self, location: str) -> Dict[str, List[str]]:
+        return self.regional_agent.data_loader.get_regional_foods(location)
+
+    def _generate_recommendations_from_profile(
+        self,
+        patient_profile: Dict[str, Any],
+        regional_foods: Dict[str, List[str]],
+    ) -> Dict[str, Any]:
+        return self.recommendation_agent.generate_recommendations(patient_profile, regional_foods)
+
+    def _build_report_payload(
+        self,
+        patient_profile: Dict[str, Any],
+        regional_foods: Dict[str, Any],
+        recommendations: Dict[str, Any],
+    ) -> Dict[str, Any]:
+        return {
+            "patient_profile": patient_profile,
+            "regional_foods": regional_foods,
+            "recommendations": recommendations,
+            "summary": self._generate_summary(patient_profile, recommendations),
+        }
 
     def _build_recommendation_graph(self):
         """Build a LangGraph workflow for iterative recommendation + evaluation."""
@@ -83,18 +147,7 @@ class KenyanNutritionAgent:
         return graph_builder.compile()
 
     def _graph_build_profile(self, state: RecommendationGraphState) -> Dict[str, Any]:
-        patient_input = state["patient_input"]
-        patient_profile = self.patient_agent.create_patient_profile(
-            age=patient_input["age"],
-            weight=patient_input["weight"],
-            height=patient_input["height"],
-            blood_sugar=patient_input["blood_sugar"],
-            blood_pressure=patient_input["blood_pressure"],
-            diabetes_status=patient_input["diabetes_status"],
-            location=patient_input["location"],
-            religion=patient_input.get("religion"),
-            dietary_restrictions=patient_input.get("dietary_restrictions"),
-        )
+        patient_profile = self._create_patient_profile_from_input(state["patient_input"])
         return {
             "patient_profile": patient_profile,
             "trace": state.get("trace", []) + [{"step": "build_profile", "health_category": patient_profile["health_category"]}],
@@ -102,7 +155,7 @@ class KenyanNutritionAgent:
 
     def _graph_fetch_regional_foods(self, state: RecommendationGraphState) -> Dict[str, Any]:
         location = state["patient_input"]["location"]
-        regional_foods = self.regional_agent.data_loader.get_regional_foods(location)
+        regional_foods = self._fetch_regional_foods_by_location(location)
         available_foods_count = sum(len(foods) for foods in regional_foods.values())
         return {
             "regional_foods": regional_foods,
@@ -110,7 +163,7 @@ class KenyanNutritionAgent:
         }
 
     def _graph_generate_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
-        recommendations = self.recommendation_agent.generate_recommendations(
+        recommendations = self._generate_recommendations_from_profile(
             state["patient_profile"],
             state.get("regional_foods", {}),
         )
@@ -120,16 +173,13 @@ class KenyanNutritionAgent:
         }
 
     def _graph_evaluate_recommendations(self, state: RecommendationGraphState) -> Dict[str, Any]:
-        if state.get("use_llm_evaluator", False):
-            evaluation = self._evaluate_recommendations_with_llm(
-                profile=state["patient_profile"],
-                recommendations=state["recommendations"],
-            )
-        else:
-            evaluation = self._evaluate_recommendations_heuristic(
-                profile=state["patient_profile"],
-                recommendations=state["recommendations"],
-            )
+        if not state.get("use_llm_evaluator", False):
+            raise ValueError("Custom-model-only mode requires use_llm_evaluator=True.")
+
+        evaluation = self._evaluate_recommendations_with_llm(
+            profile=state["patient_profile"],
+            recommendations=state["recommendations"],
+        )
 
         return {
             "evaluation": evaluation,
@@ -168,96 +218,95 @@ class KenyanNutritionAgent:
                 low_gi_foods.append(food)
         return low_gi_foods
 
-    def _evaluate_recommendations_heuristic(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
-        score = 1.0
-        issues = []
-        restrictions = profile.get("dietary_restrictions", {})
+    def _build_meal_items(self, recommendations: Dict[str, Any]) -> List[Dict[str, Any]]:
+        meal_items: List[Dict[str, Any]] = []
         meal_plan = recommendations.get("meal_plan", {})
 
-        def flatten_meal_foods(section: Dict[str, Any]) -> List[str]:
-            flattened = []
-            for foods in section.values():
-                if isinstance(foods, list):
-                    flattened.extend(foods)
-            return flattened
+        for meal_name, section in meal_plan.items():
+            for category, foods in section.items():
+                if not isinstance(foods, list):
+                    continue
+                for food in foods:
+                    nutrition = self.regional_agent.get_nutritional_info(food)
+                    meal_items.append(
+                        {
+                            "food": str(food).lower(),
+                            "meal": meal_name,
+                            "category": category,
+                            "gi": float(nutrition.get("gi", 50) or 50),
+                            "carbs": float(nutrition.get("carbs", 0) or 0),
+                            "protein": float(nutrition.get("protein", 0) or 0),
+                            "fat": float(nutrition.get("fat", 0) or 0),
+                            "fiber": float(nutrition.get("fiber", 0) or 0),
+                            "source_type": str(nutrition.get("source_type", "") or ""),
+                            "indigenous_vegetable": str(nutrition.get("indigenous_vegetable", "") or ""),
+                        }
+                    )
 
-        breakfast_foods = flatten_meal_foods(meal_plan.get("breakfast", {}))
-        lunch_foods = flatten_meal_foods(meal_plan.get("lunch", {}))
-        dinner_foods = flatten_meal_foods(meal_plan.get("dinner", {}))
-        snack_foods = flatten_meal_foods(meal_plan.get("snacks", {}))
-        all_meal_foods = breakfast_foods + lunch_foods + dinner_foods + snack_foods
+        return meal_items
 
-        if restrictions.get("limit_sugar", False):
-            high_gi_found = []
-            for food in all_meal_foods:
-                nutrition = self.regional_agent.get_nutritional_info(food)
-                if nutrition.get("gi", 50) >= 55:
-                    high_gi_found.append(food)
-            if high_gi_found:
-                score -= 0.35
-                issues.append(f"high_gi_meal_plan: {', '.join(sorted(set(high_gi_found)))}")
+    def _evaluate_with_agent_layer(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
+        meal_items = self._build_meal_items(recommendations)
+        context = {
+            "profile": profile,
+            "recommendations": recommendations,
+            "meal_items": meal_items,
+        }
+
+        diabetes_result = self.diabetes_agent.evaluate(meal_items)
+        portion_result = self.portion_agent.evaluate(context)
+        diversity_result = self.diversity_agent.evaluate(context)
+        cultural_result = self.cultural_agent.evaluate(context)
+
+        merged = self.aggregator.combine(
+            {
+                "diabetes": diabetes_result,
+                "portion": portion_result,
+                "diversity": diversity_result,
+                "cultural": cultural_result,
+            }
+        )
+
+        score_0_to_1 = max(0.0, min(1.0, round(float(merged.get("final_score", 1.0)) / 10.0, 3)))
+        issues: List[str] = []
+        for key in ["diabetes", "portion", "diversity", "cultural"]:
+            details = merged.get("details", {}).get(key, {})
+            issues.extend([str(item) for item in details.get("risks", [])])
 
         preferred_foods = recommendations.get("preferred_foods", {})
         if not preferred_foods.get("lean_proteins"):
-            score -= 0.2
             issues.append("missing_lean_proteins")
 
-        portion_guidelines = recommendations.get("portion_guidelines", {})
-        if restrictions.get("portion_control", False):
-            if not all(str(value).lower().startswith(("small", "moderate")) for value in portion_guidelines.values()):
-                score -= 0.15
-                issues.append("portion_control_not_reflected")
-
-        final_score = max(0.0, min(1.0, round(score, 3)))
         return {
-            "score": final_score,
-            "passes": final_score >= 0.8,
-            "issues": issues,
-            "method": "heuristic",
+            "score": score_0_to_1,
+            "passes": score_0_to_1 >= 0.8,
+            "issues": sorted(set(issues)),
+            "method": "decision_engine_multi_agent",
+            "agent_scores": {
+                "diabetes": diabetes_result.get("diabetes_score"),
+                "portion": portion_result.get("portion_score"),
+                "diversity": diversity_result.get("diversity_score"),
+                "cultural": cultural_result.get("cultural_score"),
+            },
+            "weights": merged.get("weights", {}),
         }
 
+    def _evaluate_recommendations_heuristic(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
+        return self._evaluate_with_agent_layer(profile, recommendations)
+
     def _evaluate_recommendations_with_llm(self, profile: Dict[str, Any], recommendations: Dict[str, Any]) -> Dict[str, Any]:
-        if ChatOpenAI is None:
-            self.logger.warning("langchain_openai not available. Falling back to heuristic evaluator.")
-            return self._evaluate_recommendations_heuristic(profile, recommendations)
+        meal_items = self._build_meal_items(recommendations)
+        model_evaluation = self.model_inference.evaluate_recommendations(
+            profile,
+            recommendations,
+            meal_items=meal_items,
+        )
+        model_evaluation["method"] = "custom_model_only"
+        return model_evaluation
 
-        if not os.getenv("OPENAI_API_KEY"):
-            self.logger.warning("OPENAI_API_KEY not set. Falling back to heuristic evaluator.")
-            return self._evaluate_recommendations_heuristic(profile, recommendations)
-
-        try:
-            if self._llm is None:
-                self._llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-
-            prompt = (
-                "You are a strict nutrition recommendation evaluator. "
-                "Evaluate quality for diabetes/portion-control safety and practical meal diversity. "
-                "Respond with strict JSON only in this format: "
-                "{\"score\": <0.0-1.0>, \"passes\": <true/false>, \"issues\": [<strings>]}.\n\n"
-                f"Patient profile: {json.dumps(profile)}\n"
-                f"Recommendations: {json.dumps(recommendations)}"
-            )
-            response = self._llm.invoke(prompt)
-            content = response.content if isinstance(response.content, str) else json.dumps(response.content)
-
-            start_index = content.find("{")
-            end_index = content.rfind("}")
-            json_content = content[start_index:end_index + 1] if start_index != -1 and end_index != -1 else content
-            parsed = json.loads(json_content)
-
-            score = float(parsed.get("score", 0.0))
-            issues = parsed.get("issues", [])
-            passes = bool(parsed.get("passes", score >= 0.8))
-
-            return {
-                "score": max(0.0, min(1.0, round(score, 3))),
-                "passes": passes,
-                "issues": issues if isinstance(issues, list) else [str(issues)],
-                "method": "llm",
-            }
-        except Exception as error:
-            self.logger.warning(f"LLM evaluation failed ({error}). Falling back to heuristic evaluator.")
-            return self._evaluate_recommendations_heuristic(profile, recommendations)
+    def get_architecture_change_breakdown(self, use_model: bool = True) -> str:
+        """Return a structured summary of the system evolution and research contributions."""
+        return self.model_inference.generate_architecture_change_breakdown(use_model=use_model)
 
     def _improve_recommendations(
         self,
@@ -316,40 +365,25 @@ class KenyanNutritionAgent:
         location: str,
         religion: Optional[str] = None,
         dietary_restrictions: Optional[Dict[str, bool]] = None,
-        use_llm_evaluator: bool = False,
+        use_llm_evaluator: bool = True,
         max_iterations: int = 2,
         target_score: float = 0.8,
     ) -> Dict[str, Any]:
         """Get recommendations via LangGraph with evaluate-improve loop and fallback support."""
-        patient_input = {
-            "age": age,
-            "weight": weight,
-            "height": height,
-            "blood_sugar": blood_sugar,
-            "blood_pressure": blood_pressure,
-            "diabetes_status": diabetes_status,
-            "location": location,
-            "religion": religion,
-            "dietary_restrictions": dietary_restrictions,
-        }
+        patient_input = self._build_patient_input(
+            age=age,
+            weight=weight,
+            height=height,
+            blood_sugar=blood_sugar,
+            blood_pressure=blood_pressure,
+            diabetes_status=diabetes_status,
+            location=location,
+            religion=religion,
+            dietary_restrictions=dietary_restrictions,
+        )
 
         if self._recommendation_graph is None:
-            self.logger.info("Graph workflow unavailable. Using deterministic workflow fallback.")
-            base_report = self.get_nutrition_recommendations(**patient_input)
-            evaluation = self._evaluate_recommendations_heuristic(
-                profile=base_report["patient_profile"],
-                recommendations=base_report["recommendations"],
-            )
-            base_report["evaluation"] = evaluation
-            base_report["graph_metadata"] = {
-                "graph_enabled": False,
-                "iterations": 0,
-                "target_score": target_score,
-                "max_iterations": max_iterations,
-                "evaluator": "heuristic",
-                "trace": [{"step": "fallback_workflow"}],
-            }
-            return base_report
+            raise RuntimeError("LangGraph is unavailable. Custom-model-only mode does not support fallback workflow.")
 
         final_state = self._recommendation_graph.invoke(
             {
@@ -362,24 +396,21 @@ class KenyanNutritionAgent:
             }
         )
 
-        patient_profile = final_state["patient_profile"]
-        recommendations = final_state["recommendations"]
-
-        return {
-            "patient_profile": patient_profile,
-            "regional_foods": final_state["regional_foods"],
-            "recommendations": recommendations,
-            "summary": self._generate_summary(patient_profile, recommendations),
-            "evaluation": final_state.get("evaluation", {}),
-            "graph_metadata": {
-                "graph_enabled": True,
-                "iterations": final_state.get("iterations", 0),
-                "target_score": target_score,
-                "max_iterations": max_iterations,
-                "evaluator": final_state.get("evaluation", {}).get("method", "heuristic"),
-                "trace": final_state.get("trace", []),
-            },
+        report = self._build_report_payload(
+            patient_profile=final_state["patient_profile"],
+            regional_foods=final_state["regional_foods"],
+            recommendations=final_state["recommendations"],
+        )
+        report["evaluation"] = final_state.get("evaluation", {})
+        report["graph_metadata"] = {
+            "graph_enabled": True,
+            "iterations": final_state.get("iterations", 0),
+            "target_score": target_score,
+            "max_iterations": max_iterations,
+            "evaluator": final_state.get("evaluation", {}).get("method", "heuristic"),
+            "trace": final_state.get("trace", []),
         }
+        return report
     
     def get_nutrition_recommendations(self, 
                                     age: int,
@@ -390,7 +421,8 @@ class KenyanNutritionAgent:
                                     diabetes_status: str,
                                     location: str,
                                     religion: Optional[str] = None,
-                                    dietary_restrictions: Optional[Dict[str, bool]] = None) -> Dict[str, Any]:
+                                    dietary_restrictions: Optional[Dict[str, bool]] = None,
+                                    include_model_evaluation: bool = True) -> Dict[str, Any]:
         """
         Complete workflow to get personalized nutrition recommendations
         
@@ -404,16 +436,15 @@ class KenyanNutritionAgent:
             location: Patient's geographical location in Kenya
             religion: Optional religion/cultural context to keep in profile metadata
             dietary_restrictions: Optional overrides for computed restrictions
+            include_model_evaluation: Whether to append custom-model evaluation score
         
         Returns:
             Complete nutrition recommendation report
         """
         
         self.logger.info("Starting nutrition recommendation workflow")
-        
-        # Step 1: Create patient profile using PatientProfileAgent
-        self.logger.info("Step 1: Creating patient profile...")
-        patient_profile = self.patient_agent.create_patient_profile(
+
+        patient_input = self._build_patient_input(
             age=age,
             weight=weight,
             height=height,
@@ -424,29 +455,36 @@ class KenyanNutritionAgent:
             religion=religion,
             dietary_restrictions=dietary_restrictions,
         )
+
+        # Step 1: Create patient profile
+        self.logger.info("Step 1: Creating patient profile...")
+        patient_profile = self._create_patient_profile_from_input(patient_input)
         self.logger.info(f"Patient profile created - Health category: {patient_profile['health_category']}")
         
         # Step 2: Get regional foods using data loader
         self.logger.info("Step 2: Identifying regional foods...")
-        regional_foods = self.regional_agent.data_loader.get_regional_foods(location)
+        regional_foods = self._fetch_regional_foods_by_location(patient_input["location"])
         available_foods_count = sum(len(foods) for foods in regional_foods.values())
-        self.logger.info(f"Found {available_foods_count} foods available in {location} region")
+        self.logger.info(f"Found {available_foods_count} foods available in {patient_input['location']} region")
         
-        # Step 3: Generate recommendations using FoodRecommendationAgent
+        # Step 3: Generate recommendations
         self.logger.info("Step 3: Generating personalized food recommendations...")
-        recommendations = self.recommendation_agent.generate_recommendations(
+        recommendations = self._generate_recommendations_from_profile(
             patient_profile,
             regional_foods,
         )
         self.logger.info("Food recommendations generated successfully")
         
-        # Compile complete report
-        complete_report = {
-            "patient_profile": patient_profile,
-            "regional_foods": regional_foods,
-            "recommendations": recommendations,
-            "summary": self._generate_summary(patient_profile, recommendations)
-        }
+        complete_report = self._build_report_payload(patient_profile, regional_foods, recommendations)
+
+        if include_model_evaluation:
+            evaluation = self._evaluate_recommendations_with_llm(
+                profile=patient_profile,
+                recommendations=recommendations,
+            )
+            complete_report["evaluation"] = evaluation
+            complete_report["model_evaluation_score"] = evaluation.get("score")
+            complete_report["summary"]["model_evaluation_score"] = str(evaluation.get("score"))
         
         self.logger.info("Nutrition recommendation workflow completed")
         return complete_report
@@ -546,6 +584,19 @@ class KenyanNutritionAgent:
         print(f"\n⏰ MEAL TIMING ADVICE:")
         for key, advice in timing.items():
             print(f"   {key.title()}: {advice}")
+
+        # Evaluation Output
+        evaluation = report.get('evaluation')
+        if isinstance(evaluation, dict) and evaluation:
+            print(f"\n🧪 EVALUATION RESULTS:")
+            print(f"   Method: {evaluation.get('method', 'custom_model_only')}")
+            print(f"   Score: {evaluation.get('score', 'n/a')}")
+            print(f"   Passes Threshold: {evaluation.get('passes', 'n/a')}")
+            issues = evaluation.get('issues', [])
+            if issues:
+                print(f"   Issues: {', '.join(str(issue) for issue in issues)}")
+            else:
+                print("   Issues: None")
         
         print("\n" + "="*60)
     
@@ -732,7 +783,10 @@ class KenyanNutritionAgent:
         
         try:
             # Generate recommendations
-            recommendations = self.get_nutrition_recommendations(**patient_data)
+            recommendations = self.get_nutrition_recommendations_graph(
+                **patient_data,
+                use_llm_evaluator=True,
+            )
             
             # Display results
             self.print_recommendations(recommendations)
@@ -789,7 +843,10 @@ def main():
             }
             
             # Get comprehensive recommendations
-            recommendations = nutrition_agent.get_nutrition_recommendations(**patient_data)
+            recommendations = nutrition_agent.get_nutrition_recommendations_graph(
+                **patient_data,
+                use_llm_evaluator=True,
+            )
             
             # Print formatted recommendations
             nutrition_agent.print_recommendations(recommendations)

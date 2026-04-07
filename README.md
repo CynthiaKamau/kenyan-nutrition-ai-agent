@@ -1,6 +1,6 @@
 # Kenyan Nutrition AI Agent
 
-An intelligent, agentic nutrition recommendation system powered by **LangGraph** and **LangChain** that provides personalized dietary advice based on patient health profiles and regional food availability in Kenya. Features a multi-agent architecture with **evaluate-improve loops** for high-quality recommendations, comprehensive patient profiling, regional food mapping, and tailored meal planning for diabetes management and general wellness.
+An intelligent nutrition recommendation system for Kenyan meal planning with a layered architecture: data layer, recommendation sub-agents, multi-agent decision engine, and custom model evaluation. The system provides personalized dietary guidance using patient health profiles and regional food availability.
 
 ## 🌟 Features
 
@@ -8,15 +8,17 @@ An intelligent, agentic nutrition recommendation system powered by **LangGraph**
 - **Dynamic Regional Food Mapping**: Real-time food availability lookup across 47+ Kenyan counties from Excel dataset
 - **Personalized Meal Planning**: Custom meal plans based on health conditions and local food availability
 - **Diabetes Management**: Specialized recommendations for Type 1, Type 2, and pre-diabetes patients
-- **Evaluation-Improve Loop**: LangGraph-based feedback mechanism with heuristic or LLM-based quality scoring
+- **Multi-Agent Decision Engine**: Specialized diabetes, portion, diversity, and cultural agents with weighted aggregation
+- **Custom Model Evaluation**: Local fine-tuned evaluator supported out-of-the-box (default mode)
+- **Evaluation-Improve Loop**: LangGraph-based iterative refinement with explicit evaluation traces
 - **Interactive Interface**: User-friendly command-line interface for data input and demo mode
 - **Structured Religion Input**: Predefined religion options in interactive mode (Christianity, Islam, Hinduism, Buddhism, Judaism, Polytheism)
 - **Optional Dietary Override Input**: Keep automatic restrictions or provide manual restriction overrides when needed
-- **Comprehensive Reports**: Detailed nutrition reports with meal timing, portion guidelines, and dietary restrictions supported by evaluation traces
+- **Comprehensive Reports**: Detailed nutrition reports with meal timing, portion guidelines, evaluation score, and issues
 
 ## 🏗️ Architecture
 
-The system uses a **multi-agent architecture** with LangGraph-based workflows for recommendation generation and quality assurance:
+The system uses a **layered multi-agent architecture**:
 
 ### Core Agents
 
@@ -24,13 +26,27 @@ The system uses a **multi-agent architecture** with LangGraph-based workflows fo
 2. **Regional Food Agent** (`sub_agents/regions_for_food/`): Maps regional food availability by looking up live data from Excel
 3. **Food Recommendations Agent** (`sub_agents/food_recommendations/`): Generates personalized meal plans and dietary advice
 
+### Evaluation Agents
+
+1. **Diabetes Agent** (`agents/diabetes_agent.py`): GI/carbohydrate safety analysis
+2. **Portion Agent** (`agents/portion_agent.py`): Portion-control checks
+3. **Diversity Agent** (`agents/diversity_agent.py`): Meal diversity scoring
+4. **Cultural Agent** (`agents/cultural_agent.py`): Cultural/religion-aware checks
+5. **Aggregator** (`agents/aggregator.py`): Weighted score fusion
+
+### Decision Engine
+
+- `decision_engine/constraints.py`: Rule constants (GI/carb/fiber thresholds)
+- `decision_engine/rules.py`: Reusable scoring helpers
+- `decision_engine/scorer.py`: Diabetes scoring function
+
 ### Recommendation Paths
 
-- **`get_nutrition_recommendations()`**: Simple 3-step deterministic pipeline (fast)
-  - Profile → Regional Foods → Recommendations
+- **`get_nutrition_recommendations()`**: Deterministic generation pipeline with optional model evaluation output
+  - Profile → Regional Foods → Recommendations → Evaluation (optional)
 - **`get_nutrition_recommendations_graph()`**: LangGraph-based evaluation-improve loop (quality-focused)
   - Profile → Regional Foods → Recommendations → **Evaluate** → **Improve** → Re-evaluate
-  - Heuristic evaluation checks glycemic suitability across **breakfast, lunch, dinner, and snacks**
+  - Custom-model-only evaluation mode supported
   - Iterates until target score achieved or max iterations reached
   - Returns evaluation score, improvement trace, and iteration count
 
@@ -38,7 +54,8 @@ The system uses a **multi-agent architecture** with LangGraph-based workflows fo
 
 - **LangGraph**: State machine-based workflow orchestration
 - **LangChain**: LLM integration, prompt templating, tool chains
-- **OpenAI** (optional): GPT-4o-mini for LLM-based evaluation
+- **Scikit-learn**: Local evaluator model training and inference
+- **Joblib**: Model artifact serialization
 - **Pandas/OpenpyXL**: Excel data ingestion and processing
 
 ## 📋 Health Parameters Supported
@@ -114,7 +131,7 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
 3. **Install dependencies**
 
    ```bash
-   pip install langchain langchain-openai langgraph openpyxl pandas
+   pip install langchain langchain-openai langgraph openpyxl pandas scikit-learn joblib
    ```
 
    Or install all at once:
@@ -124,6 +141,19 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
    ```
 
 ## 💻 Usage
+
+### Train Your Local Evaluator Model (Recommended)
+
+```bash
+/home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python models/fine_tuned/train_local_evaluator.py \
+   --dataset kenya_food_dataset.json \
+   --output models/fine_tuned/local_evaluator.joblib \
+   --max-meals-per-group 60
+```
+
+This produces `models/fine_tuned/local_evaluator.joblib`.
+
+By default, the app now uses this local model (`CUSTOM_EVALUATOR_MODEL=local`).
 
 ### Interactive Mode (Recommended)
 
@@ -176,14 +206,14 @@ result = agent.get_nutrition_recommendations_graph(
       "increase_fiber": True,
       "limit_saturated_fat": True,
    },
-    use_llm_evaluator=False,  # Use heuristic evaluator
+   use_llm_evaluator=True,   # Required in custom-model-only mode
     max_iterations=3,
     target_score=0.8  # Quality threshold
 )
 
 print(f"Evaluation Score: {result['evaluation']['score']}")  # e.g., 0.85
 print(f"Iterations: {result['graph_metadata']['iterations']}")  # Number of improvement cycles
-print(f"Evaluator: {result['graph_metadata']['evaluator']}")  # 'heuristic' or 'llm'
+print(f"Evaluator: {result['graph_metadata']['evaluator']}")
 print(f"Trace: {result['graph_metadata']['trace']}")  # Full iteration history
 
 # Access improved recommendations
@@ -226,9 +256,32 @@ KENYAN NUTRITION AI - PERSONALIZED RECOMMENDATIONS
 
 ```
 kenyan-nutrition-agent/
-├── agent.py                               # Main orchestration agent (LangGraph workflows)
+├── agent.py                               # Main orchestration layer
+├── commands.py                            # Quick command reference
 ├── data_loader.py                         # Excel data ingestion & region mapping
-├── kenya_food_dataset_with_aez_subcounty.xlsx  # Live food/nutrition database
+├── kenya_food_dataset.json                # JSON food dataset
+├── kenya_food_dataset_with_aez_subcounty.xlsx
+├── agents/
+│   ├── diabetes_agent.py                  # Diabetes safety evaluator
+│   ├── portion_agent.py                   # Portion evaluator
+│   ├── diversity_agent.py                 # Diversity evaluator
+│   ├── cultural_agent.py                  # Cultural evaluator
+│   └── aggregator.py                      # Weighted score fusion
+├── decision_engine/
+│   ├── constraints.py                     # Rule thresholds
+│   ├── rules.py                           # Rule helpers
+│   └── scorer.py                          # Diabetes scoring function
+├── models/
+│   ├── inference.py                       # Custom model inference wrapper
+│   └── fine_tuned/
+│       ├── features.py                    # Feature engineering for local model
+│       ├── train_local_evaluator.py       # Local model trainer
+│       └── local_evaluator.joblib         # Trained artifact (generated)
+├── pipelines/
+│   ├── data_transform.py
+│   └── dataset_builder.py                 # Training sample generation
+├── evaluation/
+│   └── metrics.py                         # Consistency/rule/diversity metrics
 ├── sub_agents/
 │   ├── patient_profiles/
 │   │   ├── __init__.py
@@ -251,10 +304,30 @@ The system includes:
 - **Live Nutritional Database**: Excel-based food data with calories, macros, fiber, and GI values
 - **Regional Mapping**: County-to-region lookup with fallback to central region
 - **Health Thresholds**: BMI categories, blood pressure ranges, diabetes classifications
-- **Evaluation Rules**: Heuristic scoring for diet quality (portion control, food balance, restrictions compliance)
-- **LLM Evaluation** (optional): GPT-4o-mini scoring via LangChain (requires `OPENAI_API_KEY`)
+- **Evaluation Rules**: Decision-engine constraints and scoring logic
+- **Local Custom Model** (default): `models/fine_tuned/local_evaluator.joblib`
 
-### Enable LLM Evaluation
+### Local Model Selection
+
+Default behavior (no env var required):
+
+```bash
+export CUSTOM_EVALUATOR_MODEL=local
+```
+
+Explicit artifact path:
+
+```bash
+export CUSTOM_EVALUATOR_MODEL=local:models/fine_tuned/local_evaluator.joblib
+```
+
+Alternative explicit variable:
+
+```bash
+export CUSTOM_EVALUATOR_LOCAL_MODEL_PATH=models/fine_tuned/local_evaluator.joblib
+```
+
+### Optional Remote Model Evaluation
 
 Set environment variable:
 
@@ -267,7 +340,7 @@ Then use in recommendations:
 ```python
 agent.get_nutrition_recommendations_graph(
     ...,
-    use_llm_evaluator=True  # Switch to LLM-powered evaluation
+   use_llm_evaluator=True
 )
 ```
 
