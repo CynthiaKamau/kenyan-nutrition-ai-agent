@@ -1,11 +1,8 @@
-from typing import List, Dict, Any
+from typing import Any, Dict
 import logging
-import sys
-from pathlib import Path
 
-# Add parent directory to path to import data_loader
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 from data_loader import get_data_loader
+
 
 class RegionalFoodAgent:
     def __init__(self):
@@ -13,12 +10,18 @@ class RegionalFoodAgent:
         self.data_loader = get_data_loader()
         self.regional_foods = self.data_loader.regional_foods
         self.logger.info("Regional foods loaded from Excel file")
-    
+
     def get_nutritional_info(self, food_item: str) -> Dict[str, Any]:
-        """Get nutritional information for food items from Excel data"""
+        """Get nutritional information for food items from Excel data."""
         nutrition = self.data_loader.get_nutrition_info(food_item)
         if nutrition.get("calories_per_100g", 0) != 0:
             return nutrition
-        
-        # Default if not found
-        return {"calories_per_100g": 0, "carbs": 0, "protein": 0, "fat": 0, "fiber": 0, "gi": 50}
+
+        return {
+            "calories_per_100g": 0,
+            "carbs": 0,
+            "protein": 0,
+            "fat": 0,
+            "fiber": 0,
+            "gi": 50,
+        }

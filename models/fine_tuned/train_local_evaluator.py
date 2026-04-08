@@ -1,5 +1,6 @@
 import argparse
 import json
+import math
 import sys
 from collections import defaultdict
 from itertools import combinations
@@ -8,8 +9,8 @@ from typing import Any, Dict, List, Tuple
 
 import joblib
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_absolute_error, r2_score
-from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import RandomizedSearchCV, train_test_split
 
 # Allow direct execution: python models/fine_tuned/train_local_evaluator.py
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -64,7 +65,10 @@ def _load_rows(path: str) -> List[Dict[str, Any]]:
         return json.load(f)
 
 
-def _build_training_rows(dataset_rows: List[Dict[str, Any]], max_meals_per_group: int = 80) -> Tuple[List[List[float]], List[float]]:
+def _build_training_rows_with_groups(
+    dataset_rows: List[Dict[str, Any]],
+    max_meals_per_group: int = 80,
+) -> Tuple[List[List[float]], List[float], List[str]]:
     grouped: Dict[Tuple[str, str], List[Dict[str, Any]]] = defaultdict(list)
     for row in dataset_rows:
         county = str(row.get("County", "")).strip()
@@ -75,8 +79,9 @@ def _build_training_rows(dataset_rows: List[Dict[str, Any]], max_meals_per_group
 
     features: List[List[float]] = []
     targets: List[float] = []
+    group_labels: List[str] = []
 
-    for _, rows in grouped.items():
+    for (county, season), rows in grouped.items():
         dedup: Dict[str, Dict[str, Any]] = {}
         for row in rows:
             food = str(row.get("Food", "")).strip().lower()
@@ -107,43 +112,129 @@ def _build_training_rows(dataset_rows: List[Dict[str, Any]], max_meals_per_group
 
             features.append(meal_items_to_features(meal_items))
             targets.append(_target_score(meal_rows))
+            group_labels.append(f"{county}::{season}")
 
             count += 1
             if count >= max_meals_per_group:
                 break
 
+    return features, targets, group_labels
+
+
+def _build_training_rows(dataset_rows: List[Dict[str, Any]], max_meals_per_group: int = 80) -> Tuple[List[List[float]], List[float]]:
+    features, targets, _ = _build_training_rows_with_groups(
+        dataset_rows,
+        max_meals_per_group=max_meals_per_group,
+    )
     return features, targets
 
 
-def train_model(dataset_path: str, output_path: str, max_meals_per_group: int = 80) -> Dict[str, float]:
+def _build_baseline_model(random_state: int) -> RandomForestRegressor:
+    return RandomForestRegressor(
+        n_estimators=250,
+        max_depth=12,
+        random_state=random_state,
+        n_jobs=-1,
+    )
+
+
+def _fit_model(
+    x_train: List[List[float]],
+    y_train: List[float],
+    enable_search: bool,
+    cv_folds: int,
+    search_iterations: int,
+    random_state: int,
+) -> Tuple[RandomForestRegressor, Dict[str, Any]]:
+    if not enable_search:
+        model = _build_baseline_model(random_state=random_state)
+        model.fit(x_train, y_train)
+        return model, {}
+
+    # Randomized search gives a practical tuning loop without exploding runtime.
+    param_distributions = {
+        "n_estimators": [150, 250, 350, 500],
+        "max_depth": [8, 10, 12, 16, None],
+        "min_samples_split": [2, 4, 8, 12],
+        "min_samples_leaf": [1, 2, 4],
+        "max_features": ["sqrt", "log2", None],
+    }
+    search = RandomizedSearchCV(
+        estimator=RandomForestRegressor(random_state=random_state, n_jobs=-1),
+        param_distributions=param_distributions,
+        n_iter=search_iterations,
+        cv=cv_folds,
+        scoring="neg_mean_absolute_error",
+        n_jobs=-1,
+        random_state=random_state,
+        verbose=0,
+    )
+    search.fit(x_train, y_train)
+    return search.best_estimator_, dict(search.best_params_)
+
+
+def train_model(
+    dataset_path: str,
+    output_path: str,
+    max_meals_per_group: int = 80,
+    enable_search: bool = False,
+    cv_folds: int = 5,
+    search_iterations: int = 20,
+    random_state: int = 42,
+) -> Dict[str, Any]:
     rows = _load_rows(dataset_path)
     x_data, y_data = _build_training_rows(rows, max_meals_per_group=max_meals_per_group)
     if not x_data:
         raise ValueError("No training rows generated. Check dataset contents.")
 
-    x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.2, random_state=42)
-
-    model = RandomForestRegressor(
-        n_estimators=250,
-        max_depth=12,
-        random_state=42,
-        n_jobs=-1,
+    x_train, x_test, y_train, y_test = train_test_split(
+        x_data,
+        y_data,
+        test_size=0.2,
+        random_state=random_state,
     )
-    model.fit(x_train, y_train)
+    model, best_params = _fit_model(
+        x_train=x_train,
+        y_train=y_train,
+        enable_search=enable_search,
+        cv_folds=cv_folds,
+        search_iterations=search_iterations,
+        random_state=random_state,
+    )
 
     y_pred = model.predict(x_test)
     mae = float(mean_absolute_error(y_test, y_pred))
+    rmse = float(math.sqrt(mean_squared_error(y_test, y_pred)))
     r2 = float(r2_score(y_test, y_pred))
+
+    metrics: Dict[str, Any] = {
+        "mae": round(mae, 4),
+        "rmse": round(rmse, 4),
+        "r2": round(r2, 4),
+        "training_rows": len(x_data),
+        "test_rows": len(x_test),
+        "search_enabled": enable_search,
+    }
+    if best_params:
+        metrics["best_params"] = best_params
 
     artifact = {
         "model": model,
         "feature_names": FEATURE_NAMES,
-        "model_version": "local_food_dataset_v1",
+        "model_version": "local_food_dataset_v2",
         "training_rows": len(x_data),
+        "training_config": {
+            "max_meals_per_group": max_meals_per_group,
+            "random_state": random_state,
+            "search_enabled": enable_search,
+            "cv_folds": cv_folds,
+            "search_iterations": search_iterations,
+        },
+        "training_metrics": metrics,
     }
     joblib.dump(artifact, output_path)
 
-    return {"mae": round(mae, 4), "r2": round(r2, 4), "training_rows": float(len(x_data))}
+    return metrics
 
 
 def main() -> None:
@@ -155,12 +246,24 @@ def main() -> None:
         help="Path to save trained model artifact",
     )
     parser.add_argument("--max-meals-per-group", type=int, default=80, help="Sampling cap per county-season group")
+    parser.add_argument("--enable-search", action="store_true", help="Enable randomized CV hyperparameter search")
+    parser.add_argument("--cv-folds", type=int, default=5, help="Cross-validation folds for search")
+    parser.add_argument("--search-iterations", type=int, default=20, help="Randomized search iterations")
+    parser.add_argument("--random-state", type=int, default=42, help="Random seed for split/search/model")
     args = parser.parse_args()
 
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    metrics = train_model(args.dataset, str(output_path), max_meals_per_group=args.max_meals_per_group)
+    metrics = train_model(
+        dataset_path=args.dataset,
+        output_path=str(output_path),
+        max_meals_per_group=args.max_meals_per_group,
+        enable_search=args.enable_search,
+        cv_folds=args.cv_folds,
+        search_iterations=args.search_iterations,
+        random_state=args.random_state,
+    )
     print(json.dumps({"model_path": str(output_path), "metrics": metrics}, indent=2))
 
 

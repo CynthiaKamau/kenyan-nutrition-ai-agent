@@ -1,26 +1,26 @@
 {
   "patient_profile": {
-    "age": 45,
-    "weight": 78.0,
-    "height": 1.68,
-    "bmi": 27.64,
-    "blood_sugar": 135,
+    "age": 35,
+    "weight": 70.0,
+    "height": 1.62,
+    "bmi": 26.67,
+    "blood_sugar": 6.0,
     "blood_pressure": {
-      "systolic": 140,
-      "diastolic": 85
+      "systolic": 120,
+      "diastolic": 80
     },
-    "diabetes_status": "prediabetes",
+    "diabetes_status": "type2",
     "location": "nairobi",
-    "religion": null,
+    "religion": "islam",
     "health_category": "high_risk",
     "dietary_restrictions": {
       "limit_sugar": true,
-      "limit_sodium": true,
+      "limit_sodium": false,
       "portion_control": true,
       "increase_fiber": true,
       "limit_saturated_fat": true
     },
-    "calorie_needs": 2495
+    "calorie_needs": 2390
   },
   "regional_foods": {
     "grains": [
@@ -127,10 +127,10 @@
       "legumes": "Small 1/2 cup cooked"
     },
     "meal_timing": {
-      "frequency": "3 main meals with optional healthy snacks",
-      "timing": "Regular meal times help maintain energy levels",
-      "breakfast": "Start your day with a balanced meal",
-      "dinner": "Light dinner 2-3 hours before bedtime"
+      "frequency": "Eat 3 main meals and 2-3 small snacks",
+      "timing": "Eat every 3-4 hours to maintain stable blood sugar",
+      "breakfast": "Within 1 hour of waking up",
+      "dinner": "At least 2-3 hours before bedtime"
     },
     "debug_regional_usage": {
       "available_categories": [
@@ -151,9 +151,9 @@
     }
   },
   "summary": {
-    "health_overview": "Patient is high_risk with Overweight BMI (27.64) and prediabetes diabetes status",
-    "key_dietary_focus": "blood sugar control, portion management, sodium reduction, fiber intake",
-    "meal_frequency": "3 main meals with optional healthy snacks",
+    "health_overview": "Patient is high_risk with Overweight BMI (26.67) and type2 diabetes status",
+    "key_dietary_focus": "blood sugar control, portion management, fiber intake",
+    "meal_frequency": "Eat 3 main meals and 2-3 small snacks",
     "primary_foods_to_include": "fish",
     "foods_to_limit": ""
   },

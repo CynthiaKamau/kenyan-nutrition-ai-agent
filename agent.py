@@ -4,14 +4,16 @@ import json
 from pathlib import Path
 from copy import deepcopy
 from models.inference import CustomModelInference
-from agents.diabetes_agent import DiabetesAgent
-from agents.portion_agent import PortionAgent
-from agents.diversity_agent import DiversityAgent
-from agents.cultural_agent import CulturalAgent
-from agents.aggregator import Aggregator
-from sub_agents.patient_profiles.agent import PatientProfileAgent
-from sub_agents.regions_for_food.agent import RegionalFoodAgent
-from sub_agents.food_recommendations.agent import FoodRecommendationAgent
+from agents import (
+    Aggregator,
+    CulturalAgent,
+    DiabetesAgent,
+    DiversityAgent,
+    FoodRecommendationAgent,
+    PatientProfileAgent,
+    PortionAgent,
+    RegionalFoodAgent,
+)
 
 try:
     from langgraph.graph import StateGraph, END

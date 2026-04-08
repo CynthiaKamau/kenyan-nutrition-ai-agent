@@ -1,6 +1,39 @@
 # Kenyan Nutrition AI Agent
 
-An intelligent nutrition recommendation system for Kenyan meal planning with a layered architecture: data layer, recommendation sub-agents, multi-agent decision engine, and custom model evaluation. The system provides personalized dietary guidance using patient health profiles and regional food availability.
+An intelligent nutrition recommendation system for Kenyan meal planning with a layered architecture: data layer, recommendation generation layer, multi-agent decision engine, and custom local-model evaluation. The system provides personalized dietary guidance using patient health profiles and regional food availability.
+
+## Quick Start
+
+1. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Train the local evaluator model:
+
+   ```bash
+   python models/fine_tuned/train_local_evaluator.py \
+     --dataset kenya_food_dataset.json \
+     --output models/fine_tuned/local_evaluator.joblib \
+     --max-meals-per-group 200
+   ```
+
+3. Run stricter grouped accuracy testing:
+
+   ```bash
+   python evaluation/local_model_report.py \
+     --dataset kenya_food_dataset.json \
+     --model-path models/fine_tuned/local_evaluator.joblib \
+     --max-meals-per-group 200 \
+     --split-strategy group
+   ```
+
+4. Start the app:
+
+   ```bash
+   python agent.py
+   ```
 
 ## 🌟 Features
 
@@ -20,13 +53,13 @@ An intelligent nutrition recommendation system for Kenyan meal planning with a l
 
 The system uses a **layered multi-agent architecture**:
 
-### Core Agents
+### Generation Layer
 
-1. **Patient Profiles Agent** (`sub_agents/patient_profiles/`): Analyzes patient health data and categorizes risk levels
-2. **Regional Food Agent** (`sub_agents/regions_for_food/`): Maps regional food availability by looking up live data from Excel
-3. **Food Recommendations Agent** (`sub_agents/food_recommendations/`): Generates personalized meal plans and dietary advice
+1. **Patient Profiles Agent** (`agents/patient_profile_agent.py`): Analyzes patient health data and categorizes risk levels
+2. **Regional Food Agent** (`agents/regional_food_agent.py`): Maps regional food availability by looking up live data from Excel
+3. **Food Recommendations Agent** (`agents/food_recommendation_agent.py`): Generates personalized meal plans and dietary advice
 
-### Evaluation Agents
+### Evaluation Layer
 
 1. **Diabetes Agent** (`agents/diabetes_agent.py`): GI/carbohydrate safety analysis
 2. **Portion Agent** (`agents/portion_agent.py`): Portion-control checks
@@ -50,13 +83,23 @@ The system uses a **layered multi-agent architecture**:
   - Iterates until target score achieved or max iterations reached
   - Returns evaluation score, improvement trace, and iteration count
 
+### How `agent.py` and `agents` Work Together
+
+- **`agent.py`** is the orchestrator. It coordinates profile creation, food lookup, recommendation generation, evaluation, and iterative improvement.
+- **`agents/`** now contains both layers:
+  - **Recommendation-building modules**: `patient_profile_agent.py`, `regional_food_agent.py`, `food_recommendation_agent.py`
+  - **Evaluation modules**: `diabetes_agent.py`, `portion_agent.py`, `diversity_agent.py`, `cultural_agent.py`
+  - **Fusion module**: `aggregator.py` for weighted score aggregation
+- **`models/inference.py`** evaluates the final recommendation using the trained local model artifact (`.joblib`).
+
 ### Tech Stack
 
-- **LangGraph**: State machine-based workflow orchestration
-- **LangChain**: LLM integration, prompt templating, tool chains
-- **Scikit-learn**: Local evaluator model training and inference
-- **Joblib**: Model artifact serialization
-- **Pandas/OpenpyXL**: Excel data ingestion and processing
+- **Python 3.10+**: Main runtime language
+- **LangGraph**: Evaluate-improve workflow orchestration
+- **Scikit-learn**: Local evaluator training, hyperparameter tuning, and inference
+- **Joblib**: Model artifact persistence (`.joblib`)
+- **Pandas + OpenPyXL**: Dataset ingestion and Excel-backed food data processing
+- **Rule-based Decision Engine**: Domain constraints and scoring in `decision_engine/`
 
 ## 📋 Health Parameters Supported
 
@@ -131,7 +174,7 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
 3. **Install dependencies**
 
    ```bash
-   pip install langchain langchain-openai langgraph openpyxl pandas scikit-learn joblib
+   pip install langgraph openpyxl pandas scikit-learn joblib
    ```
 
    Or install all at once:
@@ -148,7 +191,7 @@ _Total Coverage: 47+ counties across 7 major regions with over 70 different food
 /home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python models/fine_tuned/train_local_evaluator.py \
    --dataset kenya_food_dataset.json \
    --output models/fine_tuned/local_evaluator.joblib \
-   --max-meals-per-group 60
+   --max-meals-per-group 200
 ```
 
 This produces `models/fine_tuned/local_evaluator.joblib`.
@@ -160,7 +203,7 @@ By default, the app now uses this local model (`CUSTOM_EVALUATOR_MODEL=local`).
 Run the main agent and follow the interactive prompts:
 
 ```bash
-cd kenyan-nutrition-agent
+cd kenyan-nutrition-ai-agent
 python agent.py
 ```
 
@@ -206,7 +249,7 @@ result = agent.get_nutrition_recommendations_graph(
       "increase_fiber": True,
       "limit_saturated_fat": True,
    },
-   use_llm_evaluator=True,   # Required in custom-model-only mode
+   use_llm_evaluator=True,   # Enables strict custom-model evaluation
     max_iterations=3,
     target_score=0.8  # Quality threshold
 )
@@ -219,6 +262,40 @@ print(f"Trace: {result['graph_metadata']['trace']}")  # Full iteration history
 # Access improved recommendations
 print(f"Recommendations: {result['recommendations']}")
 ```
+
+### Model Accuracy Testing and Improvement
+
+Use these commands after training to test model quality:
+
+```bash
+# Tuned training (randomized search + CV)
+python models/fine_tuned/train_local_evaluator.py \
+   --dataset kenya_food_dataset.json \
+   --output models/fine_tuned/local_evaluator.joblib \
+   --max-meals-per-group 200 \
+   --enable-search --cv-folds 5 --search-iterations 20
+
+# Random split report (baseline)
+python evaluation/local_model_report.py \
+   --dataset kenya_food_dataset.json \
+   --model-path models/fine_tuned/local_evaluator.joblib \
+   --max-meals-per-group 200 \
+   --split-strategy random
+
+# Group split report (stricter, lower leakage risk)
+python evaluation/local_model_report.py \
+   --dataset kenya_food_dataset.json \
+   --model-path models/fine_tuned/local_evaluator.joblib \
+   --max-meals-per-group 200 \
+   --split-strategy group --importance-top-k 8
+```
+
+The report includes:
+
+- MAE, RMSE, R2 metrics
+- score-distribution comparison (actual vs predicted)
+- worst-prediction examples
+- permutation feature importance (top contributing features)
 
 ## 📊 Sample Output
 
@@ -255,13 +332,17 @@ KENYAN NUTRITION AI - PERSONALIZED RECOMMENDATIONS
 ## 📁 Project Structure
 
 ```
-kenyan-nutrition-agent/
+kenyan-nutrition-ai-agent/
 ├── agent.py                               # Main orchestration layer
 ├── commands.py                            # Quick command reference
 ├── data_loader.py                         # Excel data ingestion & region mapping
 ├── kenya_food_dataset.json                # JSON food dataset
 ├── kenya_food_dataset_with_aez_subcounty.xlsx
 ├── agents/
+│   ├── __init__.py                       # Unified package exports for agent modules
+│   ├── patient_profile_agent.py           # Patient profiling logic
+│   ├── regional_food_agent.py             # Regional food availability + nutrition lookup
+│   ├── food_recommendation_agent.py       # Personalized recommendation generation
 │   ├── diabetes_agent.py                  # Diabetes safety evaluator
 │   ├── portion_agent.py                   # Portion evaluator
 │   ├── diversity_agent.py                 # Diversity evaluator
@@ -281,17 +362,8 @@ kenyan-nutrition-agent/
 │   ├── data_transform.py
 │   └── dataset_builder.py                 # Training sample generation
 ├── evaluation/
-│   └── metrics.py                         # Consistency/rule/diversity metrics
-├── sub_agents/
-│   ├── patient_profiles/
-│   │   ├── __init__.py
-│   │   └── agent.py                      # Patient profiling logic
-│   ├── regions_for_food/
-│   │   ├── __init__.py
-│   │   └── agent.py                      # Regional food availability agent
-│   └── food_recommendations/
-│       ├── __init__.py
-│       └── agent.py                      # Recommendation engine
+│   ├── metrics.py                         # Consistency/rule/diversity metrics
+│   └── local_model_report.py              # Local model accuracy diagnostics
 ├── README.md
 ├── .gitignore
 └── requirements.txt
@@ -327,19 +399,13 @@ Alternative explicit variable:
 export CUSTOM_EVALUATOR_LOCAL_MODEL_PATH=models/fine_tuned/local_evaluator.joblib
 ```
 
-### Optional Remote Model Evaluation
+### Evaluation Mode
 
-Set environment variable:
-
-```bash
-export OPENAI_API_KEY="your-api-key"
-```
-
-Then use in recommendations:
+The system is local-model only. Keep `use_llm_evaluator=True` in graph mode to run strict custom-model evaluation:
 
 ```python
 agent.get_nutrition_recommendations_graph(
-    ...,
+   ...,
    use_llm_evaluator=True
 )
 ```
@@ -389,6 +455,12 @@ By default reports are written to the local `outputs/` directory in the project 
 
 - Interactive mode: `outputs/nutrition_report_[location]_[age]y.json`
 - Demo mode: `outputs/nutrition_report_demo.json`
+
+## 🧪 Troubleshooting
+
+- If evaluation fails at runtime, confirm the model artifact exists at `models/fine_tuned/local_evaluator.joblib`.
+- If you retrain to a different path, set `CUSTOM_EVALUATOR_MODEL=local:<path-to-joblib>`.
+- If metrics are unrealistically perfect, prefer grouped split testing (`--split-strategy group`) and expand data variety.
 
 ## 🤝 Contributing
 

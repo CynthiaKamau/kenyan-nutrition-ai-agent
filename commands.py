@@ -7,7 +7,29 @@ COMMANDS = {
 		"models/fine_tuned/train_local_evaluator.py "
 		"--dataset kenya_food_dataset.json "
 		"--output models/fine_tuned/local_evaluator.joblib "
-		"--max-meals-per-group 60"
+		"--max-meals-per-group 200"
+	),
+	"train_local_model_tuned": (
+		"/home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python "
+		"models/fine_tuned/train_local_evaluator.py "
+		"--dataset kenya_food_dataset.json "
+		"--output models/fine_tuned/local_evaluator.joblib "
+		"--max-meals-per-group 200 "
+		"--enable-search --cv-folds 5 --search-iterations 20"
+	),
+	"local_model_accuracy_report": (
+		"/home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python "
+		"evaluation/local_model_report.py "
+		"--dataset kenya_food_dataset.json "
+		"--model-path models/fine_tuned/local_evaluator.joblib "
+		"--max-meals-per-group 200 --top-k 10 --split-strategy random"
+	),
+	"local_model_accuracy_report_grouped": (
+		"/home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python "
+		"evaluation/local_model_report.py "
+		"--dataset kenya_food_dataset.json "
+		"--model-path models/fine_tuned/local_evaluator.joblib "
+		"--max-meals-per-group 200 --top-k 10 --split-strategy group --importance-top-k 8"
 	),
 	"generate_training_samples": (
 		"/home/cynthia/Work/kenyan-nutrition-ai-agent/.venv/bin/python "
